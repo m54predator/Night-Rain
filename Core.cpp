@@ -64,6 +64,71 @@ Window *Core::Create_window()
 
 void Core::Run()
 {
-	for (size_t i = 0; i < windows.size(); i++)
-		windows[i]->Run();
+	bool run = true;
+
+	uint32_t frames = 0;
+
+	uint32_t lastTick = SDL_GetTicks();
+	float unprocesed = 0.f;
+
+	const float tickPerSecond = 60;
+	const float msPerTick = 1000 / tickPerSecond;
+
+	SDL_Event event;
+	while (run) {
+		uint32_t now = SDL_GetTicks();
+		unprocesed += (now - lastTick) / msPerTick;
+
+		//if (unprocesed >= 1) {
+
+		while (SDL_PollEvent(&event)) {
+			//std::cout << event.window.type << std::endl;
+			//if (event.type == SDL_WINDOWEVENT)
+			//if (event.window.type == SDL_WINDOWEVENT_RESIZED) 
+			//if (event.window.type == SDL_USEREVENT)
+			//std::cout << "resize" << std::endl;
+
+			switch (event.type){
+			case SDL_KEYDOWN:
+				printf("Key press detected\n");
+				std::cout << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
+				break;
+
+			case SDL_KEYUP:
+				//		printf("Key release detected\n");
+
+				break;
+
+			case SDL_SYSWMEVENT:
+				printf("windows event\n");
+				break;
+			case SDL_QUIT:
+				run = 0;
+				break;
+
+			default:
+				//printf("Event is run\n");
+				break;
+			}
+			//}
+			unprocesed -= 1;
+			for (size_t i = 0; i < windows.size(); i++)
+				windows[i]->Display();
+
+			frames++;
+			/*	if (!(frames % 60)){
+			std::cout << "frame " << frames << std::endl;
+			}*/
+
+		}
+
+		uint32_t now2 = SDL_GetTicks();
+		if (now2 - lastTick < msPerTick){
+			SDL_WaitEventTimeout(&event, msPerTick - (now2 - lastTick));
+			//lastTick = now2;
+		}
+		lastTick = now;
+
+	}
+
 }
