@@ -9,6 +9,7 @@ public:
 	Simple_win();
 	virtual ~Simple_win();
 	virtual void Create();
+	virtual void Create(int x, int y);
 	void init();
 	void Display();
 

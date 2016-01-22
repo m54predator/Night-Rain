@@ -62,6 +62,16 @@ Window *Core::Create_window()
 	return win;
 }
 
+Window* Core::Create_window(int x, int y)
+{
+	Simple_win* win;
+	win = new Simple_win();
+	windows.push_back(win);
+	win->Create(x, y);
+
+	return win;
+}
+
 void Core::Run()
 {
 	bool run = true;

@@ -90,4 +90,17 @@ void Simple_win::Create()
 	init();
 }
 
+void Simple_win::Create(int x, int y)
+{
+
+	Wind_x = x; Wind_y = y;
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+	}
+
+	Wind_reference = SDL_CreateWindow(window_name.c_str(), Wind_x, Wind_y, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	glcontext = SDL_GL_CreateContext(Wind_reference);
+	init();
+}
+
 

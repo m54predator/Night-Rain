@@ -18,6 +18,7 @@ public:
 	~Core();
 
 	Window *Create_window();
+	Window *Create_window(int x, int y);
 	void Run();
 
 private:
