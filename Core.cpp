@@ -46,7 +46,7 @@ Core::~Core()
 		delete windows[i];
 }
 
-void Core::Search(std::string info, std::fstream &in)
+void Core::Search(const std::string &info, std::fstream &in)
 {
 	if (!info.compare("Path")) in >> path_proj;
 	if (!info.compare("Mode")) in >> engine_mode;

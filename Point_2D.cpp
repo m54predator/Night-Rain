@@ -20,12 +20,12 @@ Point_2D::~Point_2D()
 {
 }
 
-void Point_2D::Change_Color(RGBA _color)
+void Point_2D::Change_Color(const RGBA &_color)
 {
 	color = _color;
 }
 
-void Point_2D::Change_Coordinats(Coordinates _coord)
+void Point_2D::Change_Coordinats(const Coordinates &_coord)
 {
 	coord = _coord;
 }

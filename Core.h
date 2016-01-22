@@ -25,5 +25,5 @@ private:
 	std::string core_info, path_proj, engine_mode;
 	Window *win;
 
-	void Search(std::string info, std::fstream &in);
+	void Search(const std::string &info, std::fstream &in);
 };
