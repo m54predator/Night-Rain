@@ -1,12 +1,9 @@
 cmake_minimum_required(VERSION 3.3)
-project(Night_Rain)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-
+project(night_rain)
 
 find_package(OpenGL REQUIRED)
 
-set(Night_Rain_SOURCE_FILES
+set(night_rain_SOURCE_FILES
         Coordinates.cpp Coordinates.h
         Core.cpp  Core.h
         Function_2D.cpp Function_2D.h
@@ -27,10 +24,10 @@ SET(FORCE_STATIC_VCRT ON CACHE BOOL "Force /MT for static VC runtimes")
 
 add_subdirectory(../SDL/ SDL)
 
-add_library(Night_Rain ${Night_Rain_SOURCE_FILES})
+add_library(night_rain ${night_rain_SOURCE_FILES})
 
-set_property(TARGET Night_Rain PROPERTY CXX_STANDARD 11)
+set_property(TARGET night_rain PROPERTY CXX_STANDARD 11)
 
-target_include_directories(Night_Rain PUBLIC ../SDL/include)
-target_include_directories(Night_Rain PUBLIC ${CMAKE_SOURCE_DIR})
-target_link_libraries(Night_Rain PUBLIC SDL2-static ${OPENGL_LIBRARIES})
+target_include_directories(night_rain PUBLIC ../SDL/include)
+target_include_directories(night_rain PUBLIC ${night_rain_SOURCE_DIR})
+target_link_libraries(night_rain PUBLIC SDL2-static ${OPENGL_LIBRARIES})
