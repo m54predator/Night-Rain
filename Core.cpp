@@ -79,53 +79,52 @@ void Core::Run()
 		uint32_t now = SDL_GetTicks();
 		unprocesed += (now - lastTick) / msPerTick;
 
-		//if (unprocesed >= 1) {
+		if (unprocesed >= 1) {
+			while (SDL_PollEvent(&event)) {
+				//std::cout << event.window.type << std::endl;
+				//if (event.type == SDL_WINDOWEVENT)
+				//if (event.window.type == SDL_WINDOWEVENT_RESIZED) 
+				//if (event.window.type == SDL_USEREVENT)
+				//std::cout << "resize" << std::endl;
 
-		while (SDL_PollEvent(&event)) {
-			//std::cout << event.window.type << std::endl;
-			//if (event.type == SDL_WINDOWEVENT)
-			//if (event.window.type == SDL_WINDOWEVENT_RESIZED) 
-			//if (event.window.type == SDL_USEREVENT)
-			//std::cout << "resize" << std::endl;
+				switch (event.type){
+				case SDL_KEYDOWN:
+					std::cout << "Key press detected\n";
+					std::cout << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
+					break;
 
-			switch (event.type){
-			case SDL_KEYDOWN:
-				printf("Key press detected\n");
-				std::cout << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-				break;
+				case SDL_KEYUP:
+					//		printf("Key release detected\n");
 
-			case SDL_KEYUP:
-				//		printf("Key release detected\n");
+					break;
 
-				break;
+				case SDL_SYSWMEVENT:
+					printf("windows event\n");
+					break;
+				case SDL_QUIT:
+					run = 0;
+					break;
 
-			case SDL_SYSWMEVENT:
-				printf("windows event\n");
-				break;
-			case SDL_QUIT:
-				run = 0;
-				break;
-
-			default:
-				//printf("Event is run\n");
-				break;
+				default:
+					//printf("Event is run\n");
+					break;
+				}
 			}
-			//}
 			unprocesed -= 1;
 			for (size_t i = 0; i < windows.size(); i++)
 				windows[i]->Display();
 
 			frames++;
-			/*	if (!(frames % 60)){
-			std::cout << "frame " << frames << std::endl;
-			}*/
+			if (!(frames % 60)){
+				std::cout << "frame " << frames << std::endl;
+			}
 
 		}
 
 		uint32_t now2 = SDL_GetTicks();
 		if (now2 - lastTick < msPerTick){
-			SDL_WaitEventTimeout(&event, msPerTick - (now2 - lastTick));
-			//lastTick = now2;
+			long a = msPerTick - (now2 - lastTick);
+			SDL_WaitEventTimeout(NULL, a);
 		}
 		lastTick = now;
 
