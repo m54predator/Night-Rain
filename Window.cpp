@@ -24,7 +24,7 @@ void Window::Close()
 	SDL_DestroyWindow(Wind_reference);
 }
 
-void Window::Search(std::string info, std::iostream &in)
+void Window::Search(const std::string &info, std::iostream &in)
 {
 	if (!info.compare("Width")) in >> Wind_Wd;
 	if (!info.compare("Height")) in >> Wind_Hg;

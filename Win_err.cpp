@@ -93,7 +93,7 @@ void Win_err::Create()
 
 }
 
-void Win_err::Create(std::string str) {
+void Win_err::Create(const std::string &str) {
 	err_txt = str;
 	Create();
 

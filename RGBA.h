@@ -8,7 +8,7 @@ public:
 	~RGBA();
 
 	GLfloat r, g, b, a;
-	RGBA &operator=(RGBA &left)
+	RGBA &operator=(const RGBA &left)
 	{
 		if (this != &left) {
 			r = left.r;

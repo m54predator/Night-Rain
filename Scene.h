@@ -15,5 +15,5 @@ public:
 	~Scene();
 	void Render();
 	void SetObject(Scene_Object *new_object);
-	void Change_Color(RGBA color);
+	void Change_Color(const RGBA &color);
 };

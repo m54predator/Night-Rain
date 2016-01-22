@@ -17,7 +17,7 @@ Object_Static_2D::~Object_Static_2D()
 		delete scene_objects[i];
 }
 
-void Object_Static_2D::Change_Texture(std::string fname)
+void Object_Static_2D::Change_Texture(const std::string &fname)
 {
 	texture_path = fname;
 
@@ -29,12 +29,12 @@ void Object_Static_2D::Change_Texture(std::string fname)
 	//glTexImage2D(GL_TEXTURE_2D, 0, 3, texture->sizeX, texture->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, texture->data);
 }
 
-void Object_Static_2D::Change_Color(RGBA _color)
+void Object_Static_2D::Change_Color(const RGBA &_color)
 {
 	color = _color;
 }
 
-void Object_Static_2D::Change_Coordinats(Coordinates _coord)
+void Object_Static_2D::Change_Coordinats(const Coordinates &_coord)
 {
 	coord = _coord;
 }

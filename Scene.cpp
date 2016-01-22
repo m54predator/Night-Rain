@@ -31,7 +31,7 @@ void Scene::SetObject(Scene_Object *new_object)
 	Objects.push_back(new_object);
 }
 
-void Scene::Change_Color(RGBA color)
+void Scene::Change_Color(const RGBA &color)
 {
 	_color = color;
 }

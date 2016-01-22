@@ -10,7 +10,7 @@ public:
 	virtual ~Win_err();
 	void Create();
 	void init();
-	void Create(std::string str);
+	void Create(const std::string &str);
 	void Display();
 	void Mouse(int button, int state, int x, int y);
 

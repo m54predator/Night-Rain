@@ -32,7 +32,7 @@ private:
 
 	std::string window_info, window_value;
 
-	void Search(std::string info, std::iostream &in);
+	void Search(const std::string &info, std::iostream &in);
 	void Default();
 };
 

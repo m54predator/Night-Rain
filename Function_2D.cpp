@@ -28,17 +28,17 @@ void Function_2D::Render()
 
 }
 
-void Function_2D::Change_Color(RGBA _color)
+void Function_2D::Change_Color(const RGBA &_color)
 {
 	color = _color;
 }
 
-void Function_2D::Change_Coordinats(Coordinates _coord)
+void Function_2D::Change_Coordinats(const Coordinates &_coord)
 {
 	coord = _coord;
 }
 
-void Function_2D::Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, RGBA _color){
+void Function_2D::Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, const RGBA& _color){
 	glColor3f(_color.r, _color.g, _color.b);
 	glBegin(GL_LINES);
 	glVertex2d(x1, y1);
