@@ -25,7 +25,7 @@ SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
 SET(FORCE_STATIC_VCRT ON CACHE BOOL "Force /MT for static VC runtimes")
 
 
-add_subdirectory(../SDL/ SDL2)
+add_subdirectory(../SDL/ SDL)
 
 add_library(Night_Rain ${Night_Rain_SOURCE_FILES})
 
