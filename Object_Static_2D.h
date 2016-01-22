@@ -1,0 +1,20 @@
+#pragma once
+#include "Scene_Object.h"
+#include <vector>
+class Object_Static_2D
+	: public Scene_Object
+{
+public:
+	Object_Static_2D();
+	~Object_Static_2D();
+	void Render();
+	void Change_Texture(std::string fname);
+	void Change_Color(RGBA _color);
+	void Change_Coordinats(Coordinates _coord);
+	void Set_Object(Scene_Object *_scene_object);
+private:
+	GLuint texture_referens;
+	std::string texture_path;
+	std::vector<Scene_Object *> scene_objects;
+	//AUX_RGBImageRec *texture;
+};
