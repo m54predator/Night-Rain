@@ -7,6 +7,9 @@
 #include "Window.h"
 #include <vector>
 //#include "Spline.h"
+#include "Win_err.h"
+#include "Simple_win.h"
+#include "Event_Manager.h"
 
 class Core
 {
@@ -20,10 +23,13 @@ public:
 	Window *Create_window();
 	Window *Create_window(int x, int y);
 	void Run();
+	Event_Manager *_event_manager;
+	bool run;
 
 private:
 	std::string core_info, path_proj, engine_mode;
 	Window *win;
+	
 
 	void Search(const std::string &info, std::fstream &in);
 };

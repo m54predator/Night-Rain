@@ -1,10 +1,10 @@
 #include "Core.h"
-#include "Win_err.h"
-#include "Simple_win.h"
+
 
 Core::Core()
 	: path_proj("Game"), engine_mode("Game")
 {
+	_event_manager = new Event_Manager();
 }
 
 Core::Core(std::fstream &in)
@@ -74,8 +74,7 @@ Window* Core::Create_window(int x, int y)
 
 void Core::Run()
 {
-	bool run = true;
-
+	
 	uint32_t frames = 0;
 
 	uint32_t lastTick = SDL_GetTicks();
@@ -84,42 +83,13 @@ void Core::Run()
 	const float tickPerSecond = 60;
 	const float msPerTick = 1000 / tickPerSecond;
 
-	SDL_Event event;
+	run = true;
 	while (run) {
 		uint32_t now = SDL_GetTicks();
 		unprocesed += (now - lastTick) / msPerTick;
 
 		if (unprocesed >= 1) {
-			while (SDL_PollEvent(&event)) {
-				//std::cout << event.window.type << std::endl;
-				//if (event.type == SDL_WINDOWEVENT)
-				//if (event.window.type == SDL_WINDOWEVENT_RESIZED) 
-				//if (event.window.type == SDL_USEREVENT)
-				//std::cout << "resize" << std::endl;
-
-				switch (event.type){
-				case SDL_KEYDOWN:
-					std::cout << "Key press detected\n";
-					std::cout << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-					break;
-
-				case SDL_KEYUP:
-					//		printf("Key release detected\n");
-
-					break;
-
-				case SDL_SYSWMEVENT:
-					printf("windows event\n");
-					break;
-				case SDL_QUIT:
-					run = 0;
-					break;
-
-				default:
-					//printf("Event is run\n");
-					break;
-				}
-			}
+			_event_manager->Cheack(frames);
 			unprocesed -= 1;
 			for (size_t i = 0; i < windows.size(); i++)
 				windows[i]->Display();
