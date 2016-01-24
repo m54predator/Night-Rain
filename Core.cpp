@@ -72,7 +72,7 @@ Window* Core::Create_window(int x, int y)
 	return win;
 }
 
-void Core::Run()
+bool Core::Run()
 {
 	
 	uint32_t frames = 0;
@@ -89,7 +89,7 @@ void Core::Run()
 		unprocesed += (now - lastTick) / msPerTick;
 
 		if (unprocesed >= 1) {
-			_event_manager->Cheack(frames);
+			_event_manager->Check(frames);
 			unprocesed -= 1;
 			for (size_t i = 0; i < windows.size(); i++)
 				windows[i]->Display();
@@ -103,11 +103,11 @@ void Core::Run()
 
 		uint32_t now2 = SDL_GetTicks();
 		if (now2 - lastTick < msPerTick){
-			long a = msPerTick - (now2 - lastTick);
+			int a = (int) (msPerTick - (now2 - lastTick));
 			SDL_WaitEventTimeout(NULL, a);
 		}
 		lastTick = now;
 
 	}
-
+	return 0;
 }
