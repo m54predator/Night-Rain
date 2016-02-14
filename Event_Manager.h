@@ -14,6 +14,6 @@ public:
 	NR_event* Set_event(Callback *_function);
 	NR_event* Set_event(Callback *_function, int _timer);
 	NR_event* Set_user_event(Callback *_function, Uint32 _key);
-	void Cheack(int _tick);
+	void Check(int _tick);
 };
 

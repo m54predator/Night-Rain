@@ -22,7 +22,7 @@ public:
 
 	Window *Create_window();
 	Window *Create_window(int x, int y);
-	void Run();
+	bool Run();
 	Event_Manager *_event_manager;
 	bool run;
 	Callback *close_windows_call;
