@@ -12,7 +12,7 @@ private:
 	FuncClass *function;
 
 public:
-
+	
 	Callback(){
 		function = nullptr;
 	}
@@ -21,9 +21,7 @@ public:
 		if (function) delete function;
 	}
 
-
-
-	template<class T>
+	template<class T, class C>
 	void operator=(T func){
 		if (function) delete function;
 
@@ -35,16 +33,16 @@ public:
 			NewFuncClass(T f) :func(f){
 			}
 
-			void Call(int d){
+			void Call(C d){
 				func(d);
 			}
 		};
 
 		// Создаём экземпляр класса и сохраняем его
 		function = new NewFuncClass(func);
-	}
-
-	void operator()(int d){
-		if (function) function->Call(d);
+	
+		void operator()(C d){
+			if (function) function->Call(d);
+		}
 	}
 };

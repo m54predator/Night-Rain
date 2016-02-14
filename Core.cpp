@@ -5,6 +5,9 @@ Core::Core()
 	: path_proj("Game"), engine_mode("Game")
 {
 	_event_manager = new Event_Manager();
+	//close_windows_call->operator=([](int _tick){
+	//	Close_All_Windows();
+	//});
 }
 
 Core::Core(std::fstream &in)
@@ -110,4 +113,12 @@ void Core::Run()
 
 	}
 
+}
+
+void Core::Close_All_Windows()
+{
+	size_t i;
+	run = false;
+	for (i = 0; i < windows.size(); i++)
+		windows[i]->Close();
 }
