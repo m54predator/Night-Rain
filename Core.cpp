@@ -5,6 +5,7 @@ Core::Core()
 	: path_proj("Game"), engine_mode("Game")
 {
 	_event_manager = new Event_Manager();
+	_data = new Data();
 	//close_windows_call->operator=([](int _tick){
 	//	Close_All_Windows();
 	//});
@@ -44,9 +45,9 @@ Core::Core(std::fstream &in)
 
 Core::~Core()
 {
-	size_t windowSize = windows.size();
+	size_t windowSize = _data->windows.size();
 	for (size_t i = 0; i < windowSize; i++)
-		delete windows[i];
+		delete _data->windows[i];
 }
 
 void Core::Search(const std::string &info, std::fstream &in)
@@ -59,7 +60,7 @@ Window *Core::Create_window()
 {
 	Simple_win *win;
 	win = new Simple_win();
-	windows.push_back(win);
+	_data->windows.push_back(win);
 	win->Create();
 
 	return win;
@@ -69,13 +70,13 @@ Window* Core::Create_window(int x, int y)
 {
 	Simple_win* win;
 	win = new Simple_win();
-	windows.push_back(win);
+	_data->windows.push_back(win);
 	win->Create(x, y);
 
 	return win;
 }
 
-void Core::Run()
+bool Core::Run()
 {
 	
 	uint32_t frames = 0;
@@ -86,20 +87,21 @@ void Core::Run()
 	const float tickPerSecond = 60;
 	const float msPerTick = 1000 / tickPerSecond;
 
-	run = true;
-	while (run) {
+	_data->run = true;
+	while (_data->run) {
 		uint32_t now = SDL_GetTicks();
 		unprocesed += (now - lastTick) / msPerTick;
 
 		if (unprocesed >= 1) {
-			_event_manager->Cheack(frames);
+			_event_manager->Cheack(_data);
 			unprocesed -= 1;
-			for (size_t i = 0; i < windows.size(); i++)
-				windows[i]->Display();
+			for (size_t i = 0; i < _data->windows.size(); i++)
+				_data->windows[i]->Display();
 
 			frames++;
 			if (!(frames % 60)){
 				std::cout << "frame " << frames << std::endl;
+				_data->_tick++;
 			}
 
 		}
@@ -110,15 +112,15 @@ void Core::Run()
 			SDL_WaitEventTimeout(NULL, a);
 		}
 		lastTick = now;
-
+		
 	}
-
+	return 0;
 }
 
 void Core::Close_All_Windows()
 {
 	size_t i;
-	run = false;
-	for (i = 0; i < windows.size(); i++)
-		windows[i]->Close();
+	_data->run = false;
+	for (i = 0; i < _data->windows.size(); i++)
+		_data->windows[i]->Close();
 }

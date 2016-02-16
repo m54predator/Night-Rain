@@ -18,7 +18,8 @@ set(night_rain_SOURCE_FILES
         Window.cpp Window.h
 	Callback.h
 	NR_event.cpp NR_event.h
-	Event_Manager.cpp Event_Manager.h)
+	Event_Manager.cpp Event_Manager.h
+	Data.cpp Data.h)
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")

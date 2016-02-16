@@ -7,15 +7,12 @@
 #include "Window.h"
 #include <vector>
 //#include "Spline.h"
-#include "Win_err.h"
-#include "Simple_win.h"
+#include "Data.h"
 #include "Event_Manager.h"
 
 class Core
 {
 public:
-	std::vector<Window *> windows;
-
 	Core();
 	Core(std::fstream &in);
 	~Core();
@@ -24,8 +21,8 @@ public:
 	Window *Create_window(int x, int y);
 	bool Run();
 	Event_Manager *_event_manager;
-	bool run;
-	Callback *close_windows_call;
+	Data *_data;
+	//Callback *close_windows_call;
 	
 
 private:
