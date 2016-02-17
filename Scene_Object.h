@@ -10,6 +10,7 @@ public:
 	virtual void Render() = 0;
 	virtual void Change_Color(const RGBA &_color) = 0;
 	virtual void Change_Coordinats(const Coordinates &_coord) = 0;
+	Coordinates Get_Coordinats();
 protected:
 	RGBA color;
 	Coordinates coord;

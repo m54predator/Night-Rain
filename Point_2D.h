@@ -12,6 +12,7 @@ public:
 	void Change_Color(const RGBA &_color);
 	void Change_Coordinats(const Coordinates &_coord);
 	void Change_Coordinats(GLfloat x, GLfloat y);
+	void Set_Coordinats(GLfloat x, GLfloat y);
 	void Change_Size(GLfloat _size);
 private:
 	GLfloat size;
