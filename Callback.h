@@ -1,4 +1,4 @@
-template<class C>
+template<class C, class B>
 class Callback{
 private:
 
@@ -6,7 +6,7 @@ private:
 	class FuncClass{
 	public:
 		// Переопределяемая функция
-		virtual void Call(C) = 0;
+		virtual void Call(C,B) = 0;
 	};
 
 	// Указатель на сохранённый класс
@@ -34,8 +34,8 @@ public:
 			NewFuncClass(T f) :func(f){
 			}
 
-			void Call(C d){
-				func(d);
+			void Call(C d, B b){
+				func(d,b);
 			}
 		};
 
@@ -43,7 +43,7 @@ public:
 		function = new NewFuncClass(func);
 	
 		}
-	void operator()(C d){
-		if (function) function->Call(d);
+	void operator()(C d, B b){
+		if (function) function->Call(d,b);
 	}
 };

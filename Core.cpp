@@ -1,18 +1,18 @@
 #include "Core.h"
 
 
-Core::Core()
+Core<class User_Data>::Core()
 	: path_proj("Game"), engine_mode("Game")
 {
-	_event_manager = new Event_Manager();
+	_event_manager = new Event_Manager<User_Data>();
 	_data = new Data();
 	//close_windows_call->operator=([](int _tick){
 	//	Close_All_Windows();
 	//});
 }
-
-Core::Core(std::fstream &in)
-	: Core()
+template<class User_Data>
+Core<User_Data>::Core(std::fstream &in)
+	: Core<User_Data>()
 {
 	//in.open("Core.config");
 
@@ -43,20 +43,20 @@ Core::Core(std::fstream &in)
 	//win->Close();
 }
 
-Core::~Core()
+Core<class User_Data>::~Core()
 {
 	size_t windowSize = _data->windows.size();
 	for (size_t i = 0; i < windowSize; i++)
 		delete _data->windows[i];
 }
 
-void Core::Search(const std::string &info, std::fstream &in)
+void Core<class User_Data>::Search(const std::string &info, std::fstream &in)
 {
 	if (!info.compare("Path")) in >> path_proj;
 	if (!info.compare("Mode")) in >> engine_mode;
 }
 
-Window *Core::Create_window()
+Window *Core<class User_Data>::Create_window()
 {
 	Simple_win *win;
 	win = new Simple_win();
@@ -66,7 +66,7 @@ Window *Core::Create_window()
 	return win;
 }
 
-Window* Core::Create_window(int x, int y)
+Window* Core<class User_Data>::Create_window(int x, int y)
 {
 	Simple_win* win;
 	win = new Simple_win();
@@ -76,7 +76,7 @@ Window* Core::Create_window(int x, int y)
 	return win;
 }
 
-bool Core::Run()
+bool Core<class User_Data>::Run(User_Data *_user_data)
 {
 	
 	uint32_t frames = 0;
@@ -93,7 +93,7 @@ bool Core::Run()
 		unprocesed += (now - lastTick) / msPerTick;
 
 		if (unprocesed >= 1) {
-			_event_manager->Cheack(_data);
+			_event_manager->Cheack(_data, _user_data);
 			unprocesed -= 1;
 			for (size_t i = 0; i < _data->windows.size(); i++)
 				_data->windows[i]->Display();
@@ -117,7 +117,7 @@ bool Core::Run()
 	return 0;
 }
 
-void Core::Close_All_Windows()
+void Core<class User_Data>::Close_All_Windows()
 {
 	size_t i;
 	_data->run = false;

@@ -10,6 +10,7 @@
 #include "Data.h"
 #include "Event_Manager.h"
 
+template<class User_Data>
 class Core
 {
 public:
@@ -19,8 +20,8 @@ public:
 
 	Window *Create_window();
 	Window *Create_window(int x, int y);
-	bool Run();
-	Event_Manager *_event_manager;
+	bool Run(User_Data *_user_data);
+	Event_Manager<User_Data> *_event_manager;
 	Data *_data;
 	//Callback *close_windows_call;
 	
