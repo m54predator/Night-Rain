@@ -1,8 +1,10 @@
 //#include "include\GL\glut.h"
 #include "Scene.h"
-#include "Scene_Object.h"
-#include "Object_Static_2D.h"
-#include "Graphic_2D.h"
+//#include "Scene_Object.h"
+//#include "Object_Static_2D.h"
+//#include "Graphic_2D.h"
+//#include "Point_2D.h"
+//#include "Polygon_3D.h"
 
 Scene::Scene()
 {
