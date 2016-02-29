@@ -20,6 +20,7 @@ public:
 
 	Window *Create_window();
 	Window *Create_window(int x, int y);
+	Window *Create_window(int x, int y, int wd, int hg);
 	bool Run(User_Data *_user_data);
 	Event_Manager<User_Data> *_event_manager;
 	Data *_data;

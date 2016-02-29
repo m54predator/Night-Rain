@@ -9,7 +9,8 @@ public:
 	Simple_win();
 	virtual ~Simple_win();
 	virtual void Create();
-	virtual void Create(int x, int y);
+	virtual void Create(int _wind_x, int _wind_y);
+	virtual void Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd);
 	void init();
 	void Display();
 
@@ -18,4 +19,6 @@ public:
 
 private:
 	std::string *err_txt;
+	GLfloat *persp;
+	void Perspective(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat _near, GLfloat _far);
 };

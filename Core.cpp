@@ -76,6 +76,16 @@ Window* Core<class User_Data>::Create_window(int x, int y)
 	return win;
 }
 
+Window* Core<class User_Data>::Create_window(int x, int y, int wd, int hg)
+{
+	Simple_win* win;
+	win = new Simple_win();
+	_data->windows.push_back(win);
+	win->Create(x, y, wd, hg);
+
+	return win;
+}
+
 bool Core<class User_Data>::Run(User_Data *_user_data)
 {
 	
