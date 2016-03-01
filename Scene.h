@@ -19,4 +19,5 @@ public:
 	void SetObject(Scene_Object *new_object);
 	void Change_Color(const RGBA &color);
 	Coordinates camera;
+	Sint32 lookat_x, lookat_y;
 };

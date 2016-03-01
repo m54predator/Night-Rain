@@ -31,7 +31,6 @@ void Simple_win::Mouse(int button, int state, int x, int y)
 void Simple_win::Display()
 {
 
-
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
@@ -48,19 +47,14 @@ void Simple_win::Display()
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
 	glPopMatrix();
-
-
-	
 	SDL_GL_SwapWindow(Wind_reference);
 }
 void Simple_win::init()
 {
-	//SDL_Init(SDL_INIT_VIDEO);
 	persp = new GLfloat[16];
 	Perspective(-0.2F*(Wind_Wd / Wind_Hg), 0.2F*(Wind_Wd / Wind_Hg), 0.2F, -0.2F, 1, 100);
 	glClearColor(0, 0, 0, 0);
-
-
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 }
 
 void Simple_win::KeyBoard(unsigned char key, int x, int y)

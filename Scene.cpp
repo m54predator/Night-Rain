@@ -4,6 +4,7 @@ Scene::Scene()
 {
 	_color.Set_RGBA(0, 0, 0, 1);
 	camera.SetCoordinates(0, 0, 0);
+	lookat_x = lookat_y = 0;
 }
 
 Scene::~Scene()
@@ -24,8 +25,8 @@ void Scene::Render()
 
 	glClearColor(_color.r, _color.g, _color.b, _color.a);
 	glTranslatef(camera.x[0], camera.y[0], camera.z[0]);
-	//glRotatef(camera.z[0], 1, 0, 0);
-	//glRotatef(ry, 0, 1, 0);
+	glRotatef(lookat_x, 0, 1, 0);
+	glRotatef(lookat_y/10, 1, 0, 0);
 
 	size_t SizeObject = Objects.size();
 	for (size_t i = 0; i < SizeObject; i++)
