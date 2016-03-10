@@ -55,6 +55,12 @@ void Simple_win::init()
 	Perspective(-0.2F*(Wind_Wd / Wind_Hg), 0.2F*(Wind_Wd / Wind_Hg), 0.2F, -0.2F, 1, 100);
 	glClearColor(0, 0, 0, 0);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
+
+	glDisable(GL_CULL_FACE);
+	glDisable(GL_DEPTH_TEST);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
 }
 
 void Simple_win::KeyBoard(unsigned char key, int x, int y)

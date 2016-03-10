@@ -1,7 +1,9 @@
 #pragma once
+
 #include <string>
 #include "RGBA.h"
 #include "Coordinates.h"
+#include "lodepng.h"
 class Scene_Object
 {
 public:

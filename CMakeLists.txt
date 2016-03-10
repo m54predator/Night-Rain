@@ -20,7 +20,8 @@ set(night_rain_SOURCE_FILES
 	NR_event.cpp NR_event.h
 	Event_Manager.cpp Event_Manager.h
 	Data.cpp Data.h
-	Polygon_3D.cpp Polygon_3D.h)
+	Polygon_3D.cpp Polygon_3D.h
+	lodepng.cpp lodepng.h)
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
