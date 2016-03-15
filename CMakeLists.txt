@@ -5,7 +5,7 @@ find_package(OpenGL REQUIRED)
 
 set(night_rain_SOURCE_FILES
         Coordinates.cpp Coordinates.h
-        Core.cpp  Core.h
+        Core.cpp Core.h
         Function_2D.cpp Function_2D.h
         Graphic_2D.cpp Graphic_2D.h
         Object_Static_2D.cpp Object_Static_2D.h
@@ -16,12 +16,12 @@ set(night_rain_SOURCE_FILES
         Simple_win.cpp Simple_win.h
         Win_err.cpp Win_err.h
         Window.cpp Window.h
-	Callback.h
-	NR_event.cpp NR_event.h
-	Event_Manager.cpp Event_Manager.h
-	Data.cpp Data.h
-	Polygon_3D.cpp Polygon_3D.h
-	lodepng.cpp lodepng.h)
+        Callback.h
+        NR_event.cpp NR_event.h
+        Event_Manager.cpp Event_Manager.h
+        Data.cpp Data.h
+        Polygon_3D.cpp Polygon_3D.h
+        lodepng.cpp lodepng.h)
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
