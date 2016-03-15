@@ -7,7 +7,6 @@ Data::Data()
 	run = false;
 }
 
-
 Data::~Data()
 {
 }

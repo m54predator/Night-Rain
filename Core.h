@@ -25,7 +25,7 @@ public:
 	Event_Manager<User_Data> *_event_manager;
 	Data *_data;
 	//Callback *close_windows_call;
-	
+
 
 private:
 	std::string core_info, path_proj, engine_mode;
@@ -33,4 +33,6 @@ private:
 	void Close_All_Windows();
 
 	void Search(const std::string &info, std::fstream &in);
+
+	void *addNewSimpleWin() const;
 };

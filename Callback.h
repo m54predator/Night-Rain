@@ -13,7 +13,7 @@ private:
 	FuncClass *function;
 
 public:
-	
+
 	Callback(){
 		function = nullptr;
 	}
@@ -41,7 +41,7 @@ public:
 
 		// Создаём экземпляр класса и сохраняем его
 		function = new NewFuncClass(func);
-	
+
 		}
 	void operator()(C d, B b){
 		if (function) function->Call(d,b);

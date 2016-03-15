@@ -1,6 +1,7 @@
-#include "Win_err.h"
-#include "Simple_win.h"
 #pragma once
+
+#include "Window.h"
+
 class Data
 {
 public:

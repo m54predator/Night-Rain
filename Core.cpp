@@ -1,6 +1,9 @@
 #include "Core.h"
 
+#include "Win_err.h"
+#include "Simple_win.h"
 
+template<>
 Core<class User_Data>::Core()
 	: path_proj("Game"), engine_mode("Game")
 {
@@ -10,6 +13,7 @@ Core<class User_Data>::Core()
 	//	Close_All_Windows();
 	//});
 }
+
 template<class User_Data>
 Core<User_Data>::Core(std::fstream &in)
 	: Core<User_Data>()
@@ -43,6 +47,7 @@ Core<User_Data>::Core(std::fstream &in)
 	//win->Close();
 }
 
+template<>
 Core<class User_Data>::~Core()
 {
 	size_t windowSize = _data->windows.size();
@@ -50,45 +55,54 @@ Core<class User_Data>::~Core()
 		delete _data->windows[i];
 }
 
+template<>
 void Core<class User_Data>::Search(const std::string &info, std::fstream &in)
 {
 	if (!info.compare("Path")) in >> path_proj;
 	if (!info.compare("Mode")) in >> engine_mode;
 }
 
+template<>
+void *Core<class User_Data>::addNewSimpleWin() const
+{
+	Simple_win *win = new Simple_win();
+	_data->windows.push_back(win);
+}
+
+template<>
 Window *Core<class User_Data>::Create_window()
 {
-	Simple_win *win;
-	win = new Simple_win();
-	_data->windows.push_back(win);
+	addNewSimpleWin();
+	Simple_win *win = static_cast<Simple_win *>(_data->windows.back());
 	win->Create();
 
 	return win;
 }
 
-Window* Core<class User_Data>::Create_window(int x, int y)
+template<>
+Window *Core<class User_Data>::Create_window(int x, int y)
 {
-	Simple_win* win;
-	win = new Simple_win();
-	_data->windows.push_back(win);
+	addNewSimpleWin();
+	Simple_win *win = static_cast<Simple_win *>(_data->windows.back());
 	win->Create(x, y);
 
 	return win;
 }
 
-Window* Core<class User_Data>::Create_window(int x, int y, int wd, int hg)
+template<>
+Window *Core<class User_Data>::Create_window(int x, int y, int wd, int hg)
 {
-	Simple_win* win;
-	win = new Simple_win();
-	_data->windows.push_back(win);
+	addNewSimpleWin();
+	Simple_win *win = static_cast<Simple_win *>(_data->windows.back());
 	win->Create(x, y, wd, hg);
 
 	return win;
 }
 
+template<>
 bool Core<class User_Data>::Run(User_Data *_user_data)
 {
-	
+
 	uint32_t frames = 0;
 
 	uint32_t lastTick = SDL_GetTicks();
@@ -109,7 +123,7 @@ bool Core<class User_Data>::Run(User_Data *_user_data)
 				_data->windows[i]->Display();
 
 			frames++;
-			if (!(frames % 60)){
+			if (!(frames % 60)) {
 				std::cout << "frame " << frames << std::endl;
 				_data->_tick++;
 			}
@@ -117,16 +131,17 @@ bool Core<class User_Data>::Run(User_Data *_user_data)
 		}
 
 		uint32_t now2 = SDL_GetTicks();
-		if (now2 - lastTick < msPerTick){
-			long a = msPerTick - (now2 - lastTick);
-			SDL_WaitEventTimeout(NULL, a);
+		if (now2 - lastTick < msPerTick) {
+			int maxWaitInMs = (int) (msPerTick - (now2 - lastTick));
+			SDL_WaitEventTimeout(NULL, maxWaitInMs);
 		}
 		lastTick = now;
-		
+
 	}
 	return 0;
 }
 
+template<>
 void Core<class User_Data>::Close_All_Windows()
 {
 	size_t i;

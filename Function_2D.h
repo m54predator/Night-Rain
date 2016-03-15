@@ -1,9 +1,8 @@
 #pragma once
-#include "Scene_Object.h"
-#include <vector>
 
-class Function_2D :
-	public Scene_Object
+#include "Scene_Object.h"
+
+class Function_2D: public Scene_Object
 {
 public:
 	Function_2D();

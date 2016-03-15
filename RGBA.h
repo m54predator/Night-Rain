@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
+
 #include <SDL_opengl.h>
+
 class RGBA
 {
 public:

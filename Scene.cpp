@@ -1,5 +1,12 @@
 #include "Scene.h"
 
+#include "Object_Static_2D.h"
+#include "Graphic_2D.h"
+#include "Point_2D.h"
+#include "Polygon_3D.h"
+
+//#include "glaux.h"
+
 Scene::Scene()
 {
 	_color.Set_RGBA(0, 0, 0, 1);
@@ -24,7 +31,15 @@ void Scene::Render()
 	//glMatrixMode(GL_MODELVIEW);
 	glClearColor(_color.r, _color.g, _color.b, _color.a);
 	const float PI = 3.141592653;
-	gluLookAt(camera.x[0], camera.y[0], camera.z[0], camera.x[0] - sin(1.0*lookat_x / 180 * PI), camera.y[0] + (tan(1.0*lookat_y / 180 * PI)), camera.z[0] - cos(1.0*lookat_x / 180 * PI), 0, 1, 0);
+//	gluLookAt(camera.x[0],
+//	          camera.y[0],
+//	          camera.z[0],
+//	          camera.x[0] - sin(1.0 * lookat_x / 180 * PI),
+//	          camera.y[0] + (tan(1.0 * lookat_y / 180 * PI)),
+//	          camera.z[0] - cos(1.0 * lookat_x / 180 * PI),
+//	          0,
+//	          1,
+//	          0);
 	//glLoadIdentity();
 	//glTranslatef(camera.x[0], camera.y[0], camera.z[0]);
 	//glRotatef(lookat_x, 0, 1, 0);
@@ -45,10 +60,18 @@ void Scene::Change_Color(const RGBA &color)
 	_color = color;
 }
 
-void Scene::LookAt(GLdouble eyeX, GLdouble eyeY, GLdouble eyeZ, GLdouble centerX, GLdouble centerY, GLdouble centerZ, GLdouble upX, GLdouble upY, GLdouble upZ)
+void Scene::LookAt(GLdouble eyeX,
+                   GLdouble eyeY,
+                   GLdouble eyeZ,
+                   GLdouble centerX,
+                   GLdouble centerY,
+                   GLdouble centerZ,
+                   GLdouble upX,
+                   GLdouble upY,
+                   GLdouble upZ)
 {
 	GLdouble F, f, up;
-	F = centerX - eyeX*centerY - eyeY*centerZ - eyeZ;
-	f = F*F;
-	up = upX*upX + upY*upY + upZ*upZ;
+	F = centerX - eyeX * centerY - eyeY * centerZ - eyeZ;
+	f = F * F;
+	up = upX * upX + upY * upY + upZ * upZ;
 }
