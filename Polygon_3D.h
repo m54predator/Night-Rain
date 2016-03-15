@@ -9,6 +9,7 @@ public:
 	~Polygon_3D();
 	void Render();
 	bool Change_Texture(const std::string &fname);
+	bool Change_Texture(void * data, size_t w, size_t h);
 	void Change_Color(const RGBA &_color);
 	void Change_Coordinats(const Coordinates &_coord);
 	std::string error_load_texture;

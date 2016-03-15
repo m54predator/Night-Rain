@@ -16,25 +16,15 @@ Polygon_3D::~Polygon_3D()
 {
 }
 
-bool Polygon_3D::Change_Texture(const std::string &fname)
+bool Polygon_3D::Change_Texture(void * data, size_t w, size_t h)
 {
-
-	texture_path = fname;
-
-	std::vector<unsigned char> image, buffer;
+	std::vector<unsigned char> image;
 	unsigned width, height;
-	unsigned error;
-	
-	lodepng::load_file(buffer, texture_path);
-	error = lodepng::decode(image, width, height, buffer);
+	image.resize(w*h*4);
 
-	// If there's an error, display it.
-	if (error != 0)
-	{
-		error_load_texture.assign(lodepng_error_text(error));
-		return 1;
-	}
-
+	std::copy((unsigned char *)data, ((unsigned char *)data )+ w*h*4, image.begin());
+	width = w;
+	height = h;
 
 
 	// Texture size must be power of two for the primitive OpenGL version this is written for. Find next power of two.
@@ -52,7 +42,7 @@ bool Polygon_3D::Change_Texture(const std::string &fname)
 			{
 				image2[4 * u2 * y + 4 * x + c] = image[4 * width * y + 4 * x + c];
 			}
-
+	if (texture_referens) glDeleteTextures(1, &texture_referens);
 	glGenTextures(1, &texture_referens);
 	glBindTexture(GL_TEXTURE_2D, texture_referens);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -60,6 +50,21 @@ bool Polygon_3D::Change_Texture(const std::string &fname)
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, height, width, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
 
 	return 0;
+}
+
+bool Polygon_3D::Change_Texture(const std::string &fname)
+{
+
+	texture_path = fname;
+
+	std::vector<unsigned char> image, buffer;
+	unsigned width, height;
+	unsigned error;
+
+	lodepng::load_file(buffer, texture_path);
+	error = lodepng::decode(image, width, height, buffer);
+
+	return Change_Texture(&*image.begin(), width, height);
 }
 
 void Polygon_3D::Change_Color(const RGBA &_color)
