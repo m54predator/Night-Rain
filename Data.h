@@ -5,11 +5,8 @@
 class Data
 {
 public:
-	Data();
-	~Data();
-	bool run;
+	bool run = false;
 	Sint32 mouse_motion_x, mouse_motion_y;
-	Uint32 _tick;
+	Uint32 _tick = 0;
 	std::vector<Window *> windows;
 };
-
