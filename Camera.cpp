@@ -6,7 +6,7 @@
 #define FOCUSMOD 4
 
 Camera::Camera() {
-	angleXZ = 0;
+	angleXZ = SHRT_MAX / 2;
 	angleH = 0;
 
 	camX = 0;

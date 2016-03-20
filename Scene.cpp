@@ -10,8 +10,6 @@
 Scene::Scene()
 {
 	_color.Set_RGBA(0, 0, 0, 1);
-	camera.SetCoordinates(0, 0, 0);
-	lookat_x = lookat_y = 0;
 }
 
 Scene::~Scene()
@@ -36,15 +34,17 @@ void Scene::Render()
 	center.resize(3);
 	up.resize(3);
 	look_matrix.resize(16);
-	eye[0] = camera.x[0];
-	eye[1] = camera.y[0];
-	eye[2] = camera.z[0];
-	center[0] = camera.x[0] - sin(1.0 * lookat_x / 180 * M_PI);
-	center[1] = camera.y[0] + (tan(1.0 * lookat_y / 180 * M_PI));
-	center[2] = camera.z[0] - cos(1.0 * lookat_x / 180 * M_PI);
-	up[0] = 0;
-	up[1] = 1;
-	up[2] = 0;
+
+	eye[0] = _camera.camX;
+	eye[1] = _camera.camY;
+	eye[2] = _camera.camZ;
+	center[0] = _camera.lookAtX();
+	center[1] = _camera.lookAtY();
+	center[2] = _camera.lookAtZ();
+	up[0] = _camera.upDirectX;
+	up[1] = _camera.upDirectY;
+	up[2] = _camera.upDirectZ;
+
 	glGetFloatv(GL_PROJECTION_MATRIX, set_matrix);
 	look_matrix.assign(set_matrix, set_matrix + 16);
 	_lookat.LookAt_Set(look_matrix, eye, center, up);

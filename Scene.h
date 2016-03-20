@@ -2,6 +2,7 @@
 #include <vector>
 #include "Scene_Object.h"
 #include "LookAt.h"
+#include "Camera.h"
 
 class Scene
 {
@@ -14,8 +15,7 @@ public:
 	void Render();
 	void SetObject(Scene_Object *new_object);
 	void Change_Color(const RGBA &color);
-	Coordinates camera;
-	Sint32 lookat_x, lookat_y;
+	Camera _camera;
 private:
 	LookAt _lookat;
 };
