@@ -30,38 +30,38 @@ bool Camera::getFocus() const {
 	return focus;
 }
 
-void Camera::moveForward() {
-	camX += focusmod(viewVecX);
-	camY += focusmod(viewVecY);
-	camZ += focusmod(viewVecZ);
+void Camera::moveForward(float speed) {
+	camX += focusmod(viewVecX)*speed;
+	camY += focusmod(viewVecY)*speed;
+	camZ += focusmod(viewVecZ)*speed;
 }
 
-void Camera::moveBack() {
-	camX -= focusmod(viewVecX);
-	camY -= focusmod(viewVecY);
-	camZ -= focusmod(viewVecZ);
+void Camera::moveBack(float speed) {
+	camX -= focusmod(viewVecX)*speed;
+	camY -= focusmod(viewVecY)*speed;
+	camZ -= focusmod(viewVecZ)*speed;
 }
 
-void Camera::moveUp() {
-	camY += focusmod(1);
+void Camera::moveUp(float speed) {
+	camY += focusmod(1)*speed;
 }
 
-void Camera::moveDown() {
-	camY -= focusmod(1);
+void Camera::moveDown(float speed) {
+	camY -= focusmod(1)*speed;
 }
 
-void Camera::moveLeft() {
+void Camera::moveLeft(float speed) {
 	float X = viewVecZinXZ;
 	float Z = -viewVecXinXZ;
-	camX += focusmod(X);
-	camZ += focusmod(Z);
+	camX += focusmod(X)*speed;
+	camZ += focusmod(Z)*speed;
 }
 
-void Camera::moveRight() {
+void Camera::moveRight(float speed) {
 	float X = -viewVecZinXZ;
 	float Z = viewVecXinXZ;
-	camX += focusmod(X);
-	camZ += focusmod(Z);
+	camX += focusmod(X)*speed;
+	camZ += focusmod(Z)*speed;
 }
 
 void Camera::addAngleXZ(short add) {

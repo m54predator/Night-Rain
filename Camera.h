@@ -25,12 +25,12 @@ public:
 
 	Camera();
 
-	void moveForward();
-	void moveBack();
-	void moveLeft();
-	void moveRight();
-	void moveUp();
-	void moveDown();
+	void moveForward(float speed);
+	void moveBack(float speed);
+	void moveLeft(float speed);
+	void moveRight(float speed);
+	void moveUp(float speed);
+	void moveDown(float speed);
 
 	void addAngleXZ(short add);
 	void addAngleH(short add);
