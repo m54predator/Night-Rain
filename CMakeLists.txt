@@ -22,7 +22,8 @@ set(night_rain_SOURCE_FILES
         Data.cpp Data.h
         Polygon_3D.cpp Polygon_3D.h
         lodepng.cpp lodepng.h
-	LookAt.cpp LookAt.h)
+	LookAt.cpp LookAt.h
+	Camera.cpp Camera.h)
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
