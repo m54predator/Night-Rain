@@ -29,12 +29,13 @@ void Scene::Render()
 	glEnable(GL_LIGHT0);
 	glEnable(GL_COLOR_MATERIAL);
 	glClearColor(_color.r, _color.g, _color.b, _color.a);
-	GLfloat *look_matrix, *eye, *center, *up;
-	
-	eye = new GLfloat[3];
-	center = new GLfloat[3];
-	up = new GLfloat[3];
-	look_matrix = new GLfloat[16];
+	std::vector<GLfloat> look_matrix, eye, center, up;
+	GLfloat *set_matrix = new GLfloat[16];
+
+	eye.resize(3);
+	center.resize(3);
+	up.resize(3);
+	look_matrix.resize(16);
 	eye[0] = camera.x[0];
 	eye[1] = camera.y[0];
 	eye[2] = camera.z[0];
@@ -44,13 +45,14 @@ void Scene::Render()
 	up[0] = 0;
 	up[1] = 1;
 	up[2] = 0;
-	glGetFloatv(GL_PROJECTION_MATRIX, look_matrix);
-	_lookat.glhLookAt(look_matrix, eye, center, up);
+	glGetFloatv(GL_PROJECTION_MATRIX, set_matrix);
+	look_matrix.assign(set_matrix, set_matrix + 16);
+	_lookat.LookAt_Set(&look_matrix, eye, center, up);
 	glPopMatrix();
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glMultMatrixf(look_matrix);
+	glMultMatrixf(look_matrix.data());
 
 	size_t SizeObject = Objects.size();
 	for (size_t i = 0; i < SizeObject; i++)

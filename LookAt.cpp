@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include <cmath>
+#include <vector>
 
 LookAt::LookAt()
 {
@@ -13,118 +14,62 @@ LookAt::~LookAt()
 }
 
 
-void LookAt::MultiplyMatrices4by4OpenGL_FLOAT(float *result, float *matrix1, float *matrix2)
+void LookAt::MultiplyMatrices(std::vector<GLfloat> *result, std::vector<GLfloat> matrix1, std::vector<GLfloat> matrix2)
 {
-	result[0] = matrix1[0] * matrix2[0] +
-		matrix1[4] * matrix2[1] +
-		matrix1[8] * matrix2[2] +
-		matrix1[12] * matrix2[3];
-	result[4] = matrix1[0] * matrix2[4] +
-		matrix1[4] * matrix2[5] +
-		matrix1[8] * matrix2[6] +
-		matrix1[12] * matrix2[7];
-	result[8] = matrix1[0] * matrix2[8] +
-		matrix1[4] * matrix2[9] +
-		matrix1[8] * matrix2[10] +
-		matrix1[12] * matrix2[11];
-	result[12] = matrix1[0] * matrix2[12] +
-		matrix1[4] * matrix2[13] +
-		matrix1[8] * matrix2[14] +
-		matrix1[12] * matrix2[15];
-
-	result[1] = matrix1[1] * matrix2[0] +
-		matrix1[5] * matrix2[1] +
-		matrix1[9] * matrix2[2] +
-		matrix1[13] * matrix2[3];
-	result[5] = matrix1[1] * matrix2[4] +
-		matrix1[5] * matrix2[5] +
-		matrix1[9] * matrix2[6] +
-		matrix1[13] * matrix2[7];
-	result[9] = matrix1[1] * matrix2[8] +
-		matrix1[5] * matrix2[9] +
-		matrix1[9] * matrix2[10] +
-		matrix1[13] * matrix2[11];
-	result[13] = matrix1[1] * matrix2[12] +
-		matrix1[5] * matrix2[13] +
-		matrix1[9] * matrix2[14] +
-		matrix1[13] * matrix2[15];
-
-	result[2] = matrix1[2] * matrix2[0] +
-		matrix1[6] * matrix2[1] +
-		matrix1[10] * matrix2[2] +
-		matrix1[14] * matrix2[3];
-	result[6] = matrix1[2] * matrix2[4] +
-		matrix1[6] * matrix2[5] +
-		matrix1[10] * matrix2[6] +
-		matrix1[14] * matrix2[7];
-	result[10] = matrix1[2] * matrix2[8] +
-		matrix1[6] * matrix2[9] +
-		matrix1[10] * matrix2[10] +
-		matrix1[14] * matrix2[11];
-	result[14] = matrix1[2] * matrix2[12] +
-		matrix1[6] * matrix2[13] +
-		matrix1[10] * matrix2[14] +
-		matrix1[14] * matrix2[15];
-
-	result[3] = matrix1[3] * matrix2[0] +
-		matrix1[7] * matrix2[1] +
-		matrix1[11] * matrix2[2] +
-		matrix1[15] * matrix2[3];
-	result[7] = matrix1[3] * matrix2[4] +
-		matrix1[7] * matrix2[5] +
-		matrix1[11] * matrix2[6] +
-		matrix1[15] * matrix2[7];
-	result[11] = matrix1[3] * matrix2[8] +
-		matrix1[7] * matrix2[9] +
-		matrix1[11] * matrix2[10] +
-		matrix1[15] * matrix2[11];
-	result[15] = matrix1[3] * matrix2[12] +
-		matrix1[7] * matrix2[13] +
-		matrix1[11] * matrix2[14] +
-		matrix1[15] * matrix2[15];
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			for (int k = 0; k < 4; k++)
+				(*result)[i + j*4] += matrix1[i + k*4] * matrix2[k + j*4];
 }
 
-void LookAt::glhTranslatef2(float *matrix, float x, float y, float z)
+void LookAt::Translate(std::vector<GLfloat> *matrix, GLfloat x, GLfloat y, GLfloat z)
 {
-	matrix[12] = matrix[0] * x + matrix[4] * y + matrix[8] * z + matrix[12];
-	matrix[13] = matrix[1] * x + matrix[5] * y + matrix[9] * z + matrix[13];
-	matrix[14] = matrix[2] * x + matrix[6] * y + matrix[10] * z + matrix[14];
-	matrix[15] = matrix[3] * x + matrix[7] * y + matrix[11] * z + matrix[15];
+	for (int i = 0; i < 4; i++)
+		(*matrix)[i + 12] = (*matrix)[i] * x + (*matrix)[i + 4] * y + (*matrix)[i + 8] * z + (*matrix)[i + 12];
 }
 
-void LookAt::ComputeNormalOfPlane(float *normal, const float *pvector1, const float *pvector2)
+void LookAt::ComputeNormalOfPlane(std::vector<GLfloat> *normal, const std::vector<GLfloat> pvector1, const std::vector<GLfloat> pvector2)
 {
-	normal[0] = (pvector1[1] * pvector2[2]) - (pvector1[2] * pvector2[1]);
-	normal[1] = (pvector1[2] * pvector2[0]) - (pvector1[0] * pvector2[2]);
-	normal[2] = (pvector1[0] * pvector2[1]) - (pvector1[1] * pvector2[0]);
+	(*normal)[0] = (pvector1[1] * pvector2[2]) - (pvector1[2] * pvector2[1]);
+	(*normal)[1] = (pvector1[2] * pvector2[0]) - (pvector1[0] * pvector2[2]);
+	(*normal)[2] = (pvector1[0] * pvector2[1]) - (pvector1[1] * pvector2[0]);
 }
 
 
-void LookAt::NormalizeVector(float *pvector)
+void LookAt::NormalizeVector(std::vector<GLfloat> *pvector)
 {
-	float normalizingConstant;
-	normalizingConstant = 1.0 / sqrt(pvector[0] * pvector[0] + pvector[1] * pvector[1] + pvector[2] * pvector[2]);
-	pvector[0] *= normalizingConstant;
-	pvector[1] *= normalizingConstant;
-	pvector[2] *= normalizingConstant;
+	GLfloat normalizingConstant;
+	int i;
+	normalizingConstant = 0;
+	for (i = 0; i < 3; i++)
+		normalizingConstant += std::pow((*pvector)[i], 2);
+	normalizingConstant = 1.0 / sqrt(normalizingConstant);
+	for (i = 0; i < 3; i++)
+		(*pvector)[i] *= normalizingConstant;
 }
 
-void LookAt::glhLookAt(float *matrix, float *eyePosition3D, float *center3D, float *upVector3D)
+void LookAt::LookAt_Set(std::vector<GLfloat> *matrix, std::vector<GLfloat> eyePosition3D,
+	std::vector<GLfloat> center3D, std::vector<GLfloat> upVector3D)
 {
-	float forward[3], side[3], up[3];
-	float matrix2[16], resultMatrix[16];
+	std::vector<GLfloat> forward, side, up, matrix2, resultMatrix;
+
+	forward.resize(3);
+	side.resize(3);
+	up.resize(3);
+	matrix2.resize(16);
+	resultMatrix.resize(16);
 	//------------------
 	forward[0] = center3D[0] - eyePosition3D[0];
 	forward[1] = center3D[1] - eyePosition3D[1];
 	forward[2] = center3D[2] - eyePosition3D[2];
-	NormalizeVector(forward);
+	NormalizeVector(&forward);
 	//------------------
 	//Side = forward x up
-	ComputeNormalOfPlane(side, forward, upVector3D);
-	NormalizeVector(side);
+	ComputeNormalOfPlane(&side, forward, upVector3D);
+	NormalizeVector(&side);
 	//------------------
 	//Recompute up as: up = side x forward
-	ComputeNormalOfPlane(up, side, forward);
+	ComputeNormalOfPlane(&up, side, forward);
 	//------------------
 	matrix2[0] = side[0];
 	matrix2[4] = side[1];
@@ -144,9 +89,9 @@ void LookAt::glhLookAt(float *matrix, float *eyePosition3D, float *center3D, flo
 	matrix2[3] = matrix2[7] = matrix2[11] = 0.0;
 	matrix2[15] = 1.0;
 	//------------------
-	MultiplyMatrices4by4OpenGL_FLOAT(resultMatrix, matrix, matrix2);
-	glhTranslatef2(resultMatrix,
+	MultiplyMatrices(&resultMatrix, *matrix, matrix2);
+	Translate(&resultMatrix,
 		-eyePosition3D[0], -eyePosition3D[1], -eyePosition3D[2]);
 	//------------------
-	memcpy(matrix, resultMatrix, 16 * sizeof(float));
+	*matrix = resultMatrix;
 }
