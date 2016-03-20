@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Scene_Object.h"
+#include "LookAt.h"
 
 class Scene
 {
@@ -15,13 +16,6 @@ public:
 	void Change_Color(const RGBA &color);
 	Coordinates camera;
 	Sint32 lookat_x, lookat_y;
-	void LookAt(GLdouble eyeX,
-	            GLdouble eyeY,
-	            GLdouble eyeZ,
-	            GLdouble centerX,
-	            GLdouble centerY,
-	            GLdouble centerZ,
-	            GLdouble upX,
-	            GLdouble upY,
-	            GLdouble upZ);
+private:
+	LookAt _lookat;
 };

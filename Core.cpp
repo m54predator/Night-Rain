@@ -67,6 +67,7 @@ void *Core<class User_Data>::addNewSimpleWin() const
 {
 	Simple_win *win = new Simple_win();
 	_data->windows.push_back(win);
+	return 0;
 }
 
 template<>

@@ -28,22 +28,29 @@ void Scene::Render()
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_COLOR_MATERIAL);
-	//glMatrixMode(GL_MODELVIEW);
 	glClearColor(_color.r, _color.g, _color.b, _color.a);
-	const float PI = 3.141592653;
-//	gluLookAt(camera.x[0],
-//	          camera.y[0],
-//	          camera.z[0],
-//	          camera.x[0] - sin(1.0 * lookat_x / 180 * PI),
-//	          camera.y[0] + (tan(1.0 * lookat_y / 180 * PI)),
-//	          camera.z[0] - cos(1.0 * lookat_x / 180 * PI),
-//	          0,
-//	          1,
-//	          0);
-	//glLoadIdentity();
-	//glTranslatef(camera.x[0], camera.y[0], camera.z[0]);
-	//glRotatef(lookat_x, 0, 1, 0);
-	//glRotatef(lookat_y/10, 1, 0, 0);
+	GLfloat *look_matrix, *eye, *center, *up;
+	
+	eye = new GLfloat[3];
+	center = new GLfloat[3];
+	up = new GLfloat[3];
+	look_matrix = new GLfloat[16];
+	eye[0] = camera.x[0];
+	eye[1] = camera.y[0];
+	eye[2] = camera.z[0];
+	center[0] = camera.x[0] - sin(1.0 * lookat_x / 180 * M_PI);
+	center[1] = camera.y[0] + (tan(1.0 * lookat_y / 180 * M_PI));
+	center[2] = camera.z[0] - cos(1.0 * lookat_x / 180 * M_PI);
+	up[0] = 0;
+	up[1] = 1;
+	up[2] = 0;
+	glGetFloatv(GL_PROJECTION_MATRIX, look_matrix);
+	_lookat.glhLookAt(look_matrix, eye, center, up);
+	glPopMatrix();
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glMultMatrixf(look_matrix);
 
 	size_t SizeObject = Objects.size();
 	for (size_t i = 0; i < SizeObject; i++)
@@ -58,20 +65,4 @@ void Scene::SetObject(Scene_Object *new_object)
 void Scene::Change_Color(const RGBA &color)
 {
 	_color = color;
-}
-
-void Scene::LookAt(GLdouble eyeX,
-                   GLdouble eyeY,
-                   GLdouble eyeZ,
-                   GLdouble centerX,
-                   GLdouble centerY,
-                   GLdouble centerZ,
-                   GLdouble upX,
-                   GLdouble upY,
-                   GLdouble upZ)
-{
-	GLdouble F, f, up;
-	F = centerX - eyeX * centerY - eyeY * centerZ - eyeZ;
-	f = F * F;
-	up = upX * upX + upY * upY + upZ * upZ;
 }
