@@ -47,7 +47,7 @@ void Scene::Render()
 	up[2] = 0;
 	glGetFloatv(GL_PROJECTION_MATRIX, set_matrix);
 	look_matrix.assign(set_matrix, set_matrix + 16);
-	_lookat.LookAt_Set(&look_matrix, eye, center, up);
+	_lookat.LookAt_Set(look_matrix, eye, center, up);
 	glPopMatrix();
 
 	glMatrixMode(GL_PROJECTION);
