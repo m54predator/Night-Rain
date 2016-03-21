@@ -120,12 +120,12 @@ float Camera::getAngleH() const
 
 void Camera::camDirectUpdate()
 {
-	viewVecX = cosf(getAngleXZ()) * cosf(getAngleH());
-	viewVecZ = sinf(getAngleXZ()) * cosf(getAngleH());
-	viewVecY = sinf(getAngleH());
+	viewVecX = std::cos(getAngleXZ()) * std::cos(getAngleH());
+	viewVecZ = std::sin(getAngleXZ()) * std::cos(getAngleH());
+	viewVecY = std::sin(getAngleH());
 
-	viewVecXinXZ = cosf(getAngleXZ());
-	viewVecZinXZ = sinf(getAngleXZ());
+	viewVecXinXZ = std::cos(getAngleXZ());
+	viewVecZinXZ = std::sin(getAngleXZ());
 
 	float a[3];
 	float b[3];
