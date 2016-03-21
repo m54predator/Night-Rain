@@ -1,12 +1,5 @@
 #include "Scene.h"
 
-#include "Object_Static_2D.h"
-#include "Graphic_2D.h"
-#include "Point_2D.h"
-#include "Polygon_3D.h"
-
-//#include "glaux.h"
-
 Scene::Scene()
 {
 	_color.Set_RGBA(0, 0, 0, 1);

@@ -1,6 +1,5 @@
 #include "Point_2D.h"
 
-
 Point_2D::Point_2D()
 {
 	coord.x.push_back(0);

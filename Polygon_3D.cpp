@@ -1,6 +1,5 @@
 #include "Polygon_3D.h"
 
-
 Polygon_3D::Polygon_3D()
 {
 	color.Set_RGBA(1, 1, 1, 1);
@@ -18,7 +17,7 @@ Polygon_3D::~Polygon_3D()
 bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
 {
 	std::vector<unsigned char> image;
-	unsigned width, height;
+	size_t width, height;
 	image.resize(w * h * 4);
 
 	std::copy((unsigned char *) data, ((unsigned char *) data) + w * h * 4, image.begin());
@@ -47,14 +46,13 @@ bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
 	glBindTexture(GL_TEXTURE_2D, texture_referens);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, height, width, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+	glTexImage2D(GL_TEXTURE_2D, 0, 4, (GLsizei) height, (GLsizei) width, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
 
 	return 0;
 }
 
 bool Polygon_3D::Change_Texture(const std::string &fname)
 {
-
 	texture_path = fname;
 
 	std::vector<unsigned char> image, buffer;
@@ -79,8 +77,6 @@ void Polygon_3D::Change_Coordinats(const Coordinates &_coord)
 
 void Polygon_3D::Render()
 {
-	size_t i, size;
-
 	glColor3f(color.r, color.g, color.b);
 	glBindTexture(GL_TEXTURE_2D, texture_referens);
 	glBegin(GL_QUADS);

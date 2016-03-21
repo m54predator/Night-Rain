@@ -1,6 +1,5 @@
 #include "Object_Static_2D.h"
 
-
 Object_Static_2D::Object_Static_2D()
 {
 	color.Set_RGBA(1, 1, 1, 1);

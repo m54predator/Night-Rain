@@ -1,17 +1,17 @@
 #include "Win_err.h"
 
-
-Win_err::Win_err() :Window()
+Win_err::Win_err()
+	: Window()
 {
 	main_scene = new Scene();
 }
 
-Win_err::Win_err(std::iostream &in,const char *text) :Window(in)
+Win_err::Win_err(std::iostream &in, const char *text)
+	: Window(in)
 {
 	err_txt = "text";
-	
-}
 
+}
 
 Win_err::~Win_err()
 {
@@ -19,7 +19,6 @@ Win_err::~Win_err()
 
 void Win_err::Mouse(int button, int state, int x, int y)
 {
-
 	/*if (button == GLUT_LEFT_BUTTON)
 		switch (state){
 		case GLUT_DOWN: ld = 1; mx = x; my = y; break;
@@ -31,8 +30,6 @@ void Win_err::Mouse(int button, int state, int x, int y)
 		case GLUT_UP: rd = 0; break;
 	}*/
 }
-
-
 
 void Win_err::Display()
 {
@@ -64,7 +61,8 @@ void Win_err::Display()
 	SDL_GL_SwapWindow(Wind_reference);
 }
 
-void Win_err::init(){
+void Win_err::init()
+{
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
@@ -73,29 +71,26 @@ void Win_err::init(){
 
 }
 
-
 void Win_err::Create()
 {
-
-
 	SDL_DisplayMode displayMode;
 	SDL_GetDesktopDisplayMode(0, &displayMode);
 
 	Wind_x = displayMode.w / 4;
 	Wind_y = displayMode.h / 4;
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 	}
 
-	Wind_reference = SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	Wind_reference =
+		SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
 
 }
 
-void Win_err::Create(const std::string &str) {
+void Win_err::Create(const std::string &str)
+{
 	err_txt = str;
 	Create();
-
 }
-

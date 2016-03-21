@@ -1,5 +1,6 @@
 #ifndef _POINT_2D_H
 #define _POINT_2D_H
+
 #include "Scene_Object.h"
 
 class Point_2D
@@ -18,4 +19,5 @@ public:
 private:
 	GLfloat size;
 };
+
 #endif

@@ -1,13 +1,9 @@
 #include "LookAt.h"
-#include "SDL.h"
-#include "SDL_opengl.h"
 #include <cmath>
-#include <vector>
 
 LookAt::LookAt()
 {
 }
-
 
 LookAt::~LookAt()
 {
@@ -18,7 +14,7 @@ void LookAt::MultiplyMatrices(std::vector<GLfloat> &result, std::vector<GLfloat>
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 4; j++)
 			for (int k = 0; k < 4; k++)
-				result[i + j*4] += matrix1[i + k*4] * matrix2[k + j*4];
+				result[i + j * 4] += matrix1[i + k * 4] * matrix2[k + j * 4];
 }
 
 void LookAt::Translate(std::vector<GLfloat> &matrix, GLfloat x, GLfloat y, GLfloat z)
@@ -27,13 +23,14 @@ void LookAt::Translate(std::vector<GLfloat> &matrix, GLfloat x, GLfloat y, GLflo
 		matrix[i + 12] = matrix[i] * x + matrix[i + 4] * y + matrix[i + 8] * z + matrix[i + 12];
 }
 
-void LookAt::ComputeNormalOfPlane(std::vector<GLfloat> &normal, const std::vector<GLfloat> pvector1, const std::vector<GLfloat> pvector2)
+void LookAt::ComputeNormalOfPlane(std::vector<GLfloat> &normal,
+                                  const std::vector<GLfloat> pvector1,
+                                  const std::vector<GLfloat> pvector2)
 {
 	normal[0] = (pvector1[1] * pvector2[2]) - (pvector1[2] * pvector2[1]);
 	normal[1] = (pvector1[2] * pvector2[0]) - (pvector1[0] * pvector2[2]);
 	normal[2] = (pvector1[0] * pvector2[1]) - (pvector1[1] * pvector2[0]);
 }
-
 
 void LookAt::NormalizeVector(std::vector<GLfloat> &pvector)
 {
@@ -48,7 +45,7 @@ void LookAt::NormalizeVector(std::vector<GLfloat> &pvector)
 }
 
 void LookAt::LookAt_Set(std::vector<GLfloat> &matrix, std::vector<GLfloat> eyePosition3D,
-	std::vector<GLfloat> center3D, std::vector<GLfloat> upVector3D)
+                        std::vector<GLfloat> center3D, std::vector<GLfloat> upVector3D)
 {
 	std::vector<GLfloat> forward, side, up, matrix2, resultMatrix;
 
@@ -90,7 +87,7 @@ void LookAt::LookAt_Set(std::vector<GLfloat> &matrix, std::vector<GLfloat> eyePo
 	//------------------
 	MultiplyMatrices(resultMatrix, matrix, matrix2);
 	Translate(resultMatrix,
-		-eyePosition3D[0], -eyePosition3D[1], -eyePosition3D[2]);
+	          -eyePosition3D[0], -eyePosition3D[1], -eyePosition3D[2]);
 	//------------------
 	matrix = resultMatrix;
 }

@@ -1,7 +1,9 @@
 #ifndef _OBJECT_STATIC_2D_H
 #define _OBJECT_STATIC_2D_H
+
 #include "Scene_Object.h"
 #include <vector>
+
 class Object_Static_2D
 	: public Scene_Object
 {
@@ -17,6 +19,6 @@ private:
 	GLuint texture_referens;
 	std::string texture_path;
 	std::vector<Scene_Object *> scene_objects;
-	//AUX_RGBImageRec *texture;
 };
+
 #endif

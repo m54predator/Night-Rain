@@ -37,4 +37,5 @@ private:
 
 	void *addNewSimpleWin() const;
 };
+
 #endif

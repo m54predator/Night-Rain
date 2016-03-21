@@ -5,29 +5,28 @@
 class cubic_spline
 {
 private:
-	
+
 	struct spline_tuple
 	{
 		double a, b, c, d, x;
 	};
 
 	spline_tuple *splines;
-	std::size_t n; 
+	std::size_t n;
 
-	void free_mem(); 
+	void free_mem();
 
 public:
-	cubic_spline(); 
-	~cubic_spline(); 
+	cubic_spline();
+	~cubic_spline();
 
-	
 	void build_spline(const double *x, const double *y, std::size_t n);
-
 
 	double f(double x) const;
 };
 
-cubic_spline::cubic_spline() : splines(NULL)
+cubic_spline::cubic_spline()
+	: splines(NULL)
 {
 
 }
@@ -44,8 +43,7 @@ void cubic_spline::build_spline(const double *x, const double *y, std::size_t n)
 	this->n = n;
 
 	splines = new spline_tuple[n];
-	for (std::size_t i = 0; i < n; ++i)
-	{
+	for (std::size_t i = 0; i < n; ++i) {
 		splines[i].x = x[i];
 		splines[i].a = y[i];
 	}
@@ -56,8 +54,7 @@ void cubic_spline::build_spline(const double *x, const double *y, std::size_t n)
 	double *beta = new double[n - 1];
 	double A, B, C, F, h_i, h_i1, z;
 	alpha[0] = beta[0] = 0.;
-	for (std::size_t i = 1; i < n - 1; ++i)
-	{
+	for (std::size_t i = 1; i < n - 1; ++i) {
 		h_i = x[i] - x[i - 1], h_i1 = x[i + 1] - x[i];
 		A = h_i;
 		C = 2. * (h_i + h_i1);
@@ -76,8 +73,7 @@ void cubic_spline::build_spline(const double *x, const double *y, std::size_t n)
 	delete[] beta;
 	delete[] alpha;
 
-	for (std::size_t i = n - 1; i > 0; --i)
-	{
+	for (std::size_t i = n - 1; i > 0; --i) {
 		double h_i = x[i] - x[i - 1];
 		splines[i].d = (splines[i].c - splines[i - 1].c) / h_i;
 		splines[i].b = h_i * (2. * splines[i].c + splines[i - 1].c) / 6. + (y[i] - y[i - 1]) / h_i;
@@ -87,18 +83,16 @@ void cubic_spline::build_spline(const double *x, const double *y, std::size_t n)
 double cubic_spline::f(double x) const
 {
 	if (!splines)
-		return std::numeric_limits<double>::quiet_NaN(); 
+		return std::numeric_limits<double>::quiet_NaN();
 
 	spline_tuple *s;
-	if (x <= splines[0].x) 
+	if (x <= splines[0].x)
 		s = splines + 1;
-	else if (x >= splines[n - 1].x) 
+	else if (x >= splines[n - 1].x)
 		s = splines + n - 1;
-	else 
-	{
+	else {
 		std::size_t i = 0, j = n - 1;
-		while (i + 1 < j)
-		{
+		while (i + 1 < j) {
 			std::size_t k = i + (j - i) / 2;
 			if (x <= splines[k].x)
 				j = k;

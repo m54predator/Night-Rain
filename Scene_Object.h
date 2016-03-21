@@ -4,7 +4,8 @@
 #include <string>
 #include "RGBA.h"
 #include "Coordinates.h"
-#include "lodepng.h"
+#include "lodepng/lodepng.h"
+
 class Scene_Object
 {
 public:
@@ -18,4 +19,5 @@ protected:
 	RGBA color;
 	Coordinates coord;
 };
+
 #endif

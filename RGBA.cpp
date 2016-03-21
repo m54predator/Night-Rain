@@ -1,6 +1,5 @@
 #include "RGBA.h"
 
-
 RGBA::RGBA()
 {
 	Set_RGBA(1);

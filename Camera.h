@@ -1,7 +1,8 @@
 #ifndef _CAMERA_H
 #define _CAMERA_H
 
-class Camera {
+class Camera
+{
 public:
 	float camX;
 	float camY;

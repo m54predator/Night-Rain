@@ -11,4 +11,5 @@ public:
 	Uint32 _tick = 0;
 	std::vector<Window *> windows;
 };
+
 #endif

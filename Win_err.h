@@ -1,8 +1,9 @@
 #ifndef _WIN_ERR_H
 #define _WIN_ERR_H
+
 #include "Window.h"
 
-class Win_err :
+class Win_err:
 	public Window
 {
 public:

@@ -1,5 +1,6 @@
 #ifndef _WINDOW_H
 #define _WINDOW_H
+
 #include <fstream>
 #include <iostream> 
 #include <string>
@@ -36,6 +37,5 @@ private:
 	void Search(const std::string &info, std::iostream &in);
 	void Default();
 };
-
 
 #endif

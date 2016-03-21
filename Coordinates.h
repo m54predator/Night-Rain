@@ -28,4 +28,5 @@ public:
 	void SetCoordinates(double _x);
 	void Clear();
 };
+
 #endif

@@ -1,6 +1,4 @@
 #include "Simple_win.h"
-#include "Scene.h"
-
 
 Simple_win::Simple_win()
 	: Window()
@@ -33,12 +31,12 @@ void Simple_win::Display()
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	
+
 	glMultMatrixf(persp);
 	SDL_GL_MakeCurrent(Wind_reference, glcontext);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
-	
+
 	glEnable(GL_TEXTURE_2D);
 	/* Object */
 	main_scene->Render();
@@ -52,7 +50,7 @@ void Simple_win::Display()
 void Simple_win::init()
 {
 	persp = new GLfloat[16];
-	Perspective(-0.2F*(Wind_Wd / Wind_Hg), 0.2F*(Wind_Wd / Wind_Hg), 0.2F, -0.2F, 1, 100);
+	Perspective(-0.2F * (Wind_Wd / Wind_Hg), 0.2F * (Wind_Wd / Wind_Hg), 0.2F, -0.2F, 1, 100);
 	glClearColor(0, 0, 0, 0);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 
@@ -77,18 +75,24 @@ void Simple_win::Create()
 		SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
-	
+
 }
 
 void Simple_win::Create(int _wind_x, int _wind_y)
 {
 
-	Wind_x = _wind_x; Wind_y = _wind_y;
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+	Wind_x = _wind_x;
+	Wind_y = _wind_y;
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 	}
 
-	Wind_reference = SDL_CreateWindow(window_name.c_str(), Wind_x, Wind_y, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	Wind_reference = SDL_CreateWindow(window_name.c_str(),
+	                                  Wind_x,
+	                                  Wind_y,
+	                                  Wind_Wd,
+	                                  Wind_Hg,
+	                                  SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
 }
@@ -96,17 +100,23 @@ void Simple_win::Create(int _wind_x, int _wind_y)
 void Simple_win::Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd)
 {
 
-	Wind_x = _wind_x; Wind_y = _wind_y;
-	Wind_Wd = _wind_wd; Wind_Hg = _wind_hd;
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+	Wind_x = _wind_x;
+	Wind_y = _wind_y;
+	Wind_Wd = _wind_wd;
+	Wind_Hg = _wind_hd;
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 	}
 
-	Wind_reference = SDL_CreateWindow(window_name.c_str(), Wind_x, Wind_y, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	Wind_reference = SDL_CreateWindow(window_name.c_str(),
+	                                  Wind_x,
+	                                  Wind_y,
+	                                  Wind_Wd,
+	                                  Wind_Hg,
+	                                  SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
 }
-
 
 void Simple_win::Perspective(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat _near, GLfloat _far)
 {
