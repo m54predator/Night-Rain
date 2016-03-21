@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _NR_EVENT_H
+#define _NR_EVENT_H
 #include "SDL.h"
 #include "Callback.h"
 #include "Data.h"
@@ -18,3 +19,4 @@ public:
 	void Create(Callback<Data*, User_Data*> *_function, Uint32 _key);
 };
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _WINDOW_H
+#define _WINDOW_H
 #include <fstream>
 #include <iostream> 
 #include <string>
@@ -37,3 +38,4 @@ private:
 };
 
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _FUNCTION_2D_H
+#define _FUNCTION_2D_H
 
 #include "Scene_Object.h"
 
@@ -14,3 +15,4 @@ private:
 	void Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, const RGBA &_color);
 };
 
+#endif

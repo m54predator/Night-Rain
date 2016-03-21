@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _CORE_H
+#define _CORE_H
 
 // Class, engine core
 #include <SDL.h>
@@ -36,3 +37,4 @@ private:
 
 	void *addNewSimpleWin() const;
 };
+#endif

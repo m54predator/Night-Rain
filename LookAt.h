@@ -1,3 +1,5 @@
+#ifndef _LOOKAT_H
+#define _LOOKAT_H
 #include <vector>
 #include "SDL.h"
 #include "SDL_opengl.h"
@@ -18,3 +20,4 @@ private:
 
 };
 
+#endif

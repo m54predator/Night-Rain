@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SIMPLE_WIN_H
+#define _SIMPLE_WIN_H
 #include "Window.h"
 #include "Scene.h"
 
@@ -22,3 +23,4 @@ private:
 	GLfloat *persp;
 	void Perspective(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat _near, GLfloat _far);
 };
+#endif

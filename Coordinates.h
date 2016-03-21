@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _COORDINATES_H
+#define _COORDINATES_H
 
 #include <vector>
 #include <SDL.h>
@@ -27,3 +28,4 @@ public:
 	void SetCoordinates(double _x);
 	void Clear();
 };
+#endif

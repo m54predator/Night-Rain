@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _DATA_H
+#define _DATA_H
 
 #include "Window.h"
 
@@ -10,3 +11,4 @@ public:
 	Uint32 _tick = 0;
 	std::vector<Window *> windows;
 };
+#endif

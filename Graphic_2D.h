@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _GRAPHIC_2D_H
+#define _GRAPHIC_2D_H
 #include "Scene_Object.h"
 #include "Point_2D.h"
 #include "Function_2D.h"
@@ -23,3 +24,4 @@ private:
 	void Draw_Coordinat();
 };
 
+#endif

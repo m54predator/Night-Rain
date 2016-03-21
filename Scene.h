@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SCENE_H
+#define _SCENE_H
 #include <vector>
 #include "Scene_Object.h"
 #include "LookAt.h"
@@ -19,3 +20,4 @@ public:
 private:
 	LookAt _lookat;
 };
+#endif

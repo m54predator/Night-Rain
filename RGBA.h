@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _RGBA_H
+#define _RGBA_H
 
 #include <SDL_opengl.h>
 
@@ -23,3 +24,4 @@ public:
 	void Set_RGBA(GLfloat _r, GLfloat _g, GLfloat _b, GLfloat _a);
 	void Set_RGBA(GLfloat _x);
 };
+#endif

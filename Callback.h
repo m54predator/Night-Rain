@@ -1,3 +1,5 @@
+#ifndef _CALLBACK_H
+#define _CALLBACK_H
 template<class C, class B>
 class Callback{
 private:
@@ -47,3 +49,4 @@ public:
 		if (function) function->Call(d,b);
 	}
 };
+#endif

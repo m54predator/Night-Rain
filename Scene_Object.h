@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SCENE_OBJECT_H
+#define _SCENE_OBJECT_H
 
 #include <string>
 #include "RGBA.h"
@@ -17,3 +18,4 @@ protected:
 	RGBA color;
 	Coordinates coord;
 };
+#endif
