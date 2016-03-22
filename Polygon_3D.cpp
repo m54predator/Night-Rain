@@ -63,7 +63,7 @@ bool Polygon_3D::Change_Texture(const std::string &fname)
 	lodepng::load_file(buffer, texture_path);
 	error = lodepng::decode(image, width, height, buffer);
 
-	return Change_Texture(&*image.begin(), width, height);
+	return Change_Texture(&*image.begin(), height, width);
 }
 
 void Polygon_3D::Change_Color(const RGBA &_color)
