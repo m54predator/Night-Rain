@@ -1,5 +1,5 @@
 #ifndef _POLYGON_3D_H
-#define _POKYGON_3D_H
+#define _POLYGON_3D_H
 
 #include "Scene_Object.h"
 #include <vector>

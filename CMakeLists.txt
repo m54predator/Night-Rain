@@ -6,6 +6,7 @@ find_package(OpenGL REQUIRED)
 set(night_rain_SOURCE_FILES
         Coordinates.cpp Coordinates.h
         Core.cpp Core.h
+		CoreBase.cpp CoreBase.h
         Function_2D.cpp Function_2D.h
         Graphic_2D.cpp Graphic_2D.h
         Object_Static_2D.cpp Object_Static_2D.h

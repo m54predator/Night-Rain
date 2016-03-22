@@ -1,5 +1,6 @@
 #include "Function_2D.h"
 #include <cmath>
+#include <algorithm>
 
 Function_2D::Function_2D()
 {

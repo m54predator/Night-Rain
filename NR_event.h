@@ -13,11 +13,27 @@ public:
 	Uint32 key;
 	bool run;
 	Callback<Data *, User_Data *> *function;
-	NR_event();
-	~NR_event();
-	void Create(Callback<Data *, User_Data *> *_function);
-	void Create(Callback<Data *, User_Data *> *_function, int _timer);
-	void Create(Callback<Data *, User_Data *> *_function, Uint32 _key);
+	NR_event() {}
+	~NR_event() {}
+	void Create(Callback<Data *, User_Data *> *_function)
+	{
+		function = _function;
+		timer = 1;
+		run = true;
+	};
+	void Create(Callback<Data *, User_Data *> *_function, int _timer)
+	{
+		function = _function;
+		timer = _timer;
+		run = true;
+	};
+	void Create(Callback<Data *, User_Data *> *_function, Uint32 _key)
+	{
+		function = _function;
+		timer = 0;
+		key = _key;
+		run = true;
+	};
 };
 
 #endif
