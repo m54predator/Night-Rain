@@ -20,9 +20,8 @@ void Object_Static_2D::Change_Texture(const std::string &fname)
 {
 	texture_path = fname;
 
-	//texture = auxDIBImageLoad(texture_path.c_str());
-	glGenTextures(1, &texture_referens);
-	glBindTexture(GL_TEXTURE_2D, texture_referens);
+	glGenTextures(1, &texture_id);
+	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	//glTexImage2D(GL_TEXTURE_2D, 0, 3, texture->sizeX, texture->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, texture->data);
@@ -33,7 +32,7 @@ void Object_Static_2D::Change_Color(const RGBA &_color)
 	color = _color;
 }
 
-void Object_Static_2D::Change_Coordinats(const Coordinates &_coord)
+void Object_Static_2D::Change_Coordinates(const Coordinates &_coord)
 {
 	coord = _coord;
 }
@@ -43,7 +42,7 @@ void Object_Static_2D::Render()
 	size_t i, size;
 
 	glColor3f(color.r, color.g, color.b);
-	glBindTexture(GL_TEXTURE_2D, texture_referens);
+	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glBegin(GL_QUADS);
 	glTexCoord3f(0.0, 0.0, 0.0);
 	glVertex2f(coord.x[0], coord.y[0]);

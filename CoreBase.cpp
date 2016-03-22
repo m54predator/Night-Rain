@@ -1,15 +1,16 @@
 #include "CoreBase.h"
 
 // Class, engine core
-#include <SDL.h>
-#include <SDL_opengl.h>
 
 #include "Win_err.h"
 #include "Simple_win.h"
 
-CoreBase::CoreBase() : path_proj("Game"), engine_mode("Game") {}
+CoreBase::CoreBase()
+	: path_proj("Game"), engine_mode("Game")
+{ }
 
-CoreBase::CoreBase(std::fstream &in) : CoreBase()
+CoreBase::CoreBase(std::fstream &in)
+	: CoreBase()
 {
 	//in.open("Core.config");
 
@@ -27,7 +28,8 @@ CoreBase::CoreBase(std::fstream &in) : CoreBase()
 	inp >> win_path;
 }
 
-CoreBase::~CoreBase() {
+CoreBase::~CoreBase()
+{
 	size_t windowSize = _data.windows.size();
 	for (size_t i = 0; i < windowSize; i++)
 		delete _data.windows[i];

@@ -21,7 +21,7 @@ void Graphic_2D::Render()
 {
 	size_t i, size;
 
-	Draw_Coordinat();
+	Draw_Coordinates();
 
 	size = scene_objects.size();
 	for (i = 0; i < size; i++)
@@ -33,7 +33,7 @@ void Graphic_2D::Change_Color(const RGBA &_color)
 	color = _color;
 }
 
-void Graphic_2D::Change_Coordinats(const Coordinates &_coord)
+void Graphic_2D::Change_Coordinates(const Coordinates &_coord)
 {
 	coord = _coord;
 }
@@ -54,7 +54,7 @@ void Graphic_2D::Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, const
 	glEnd();
 }
 
-void Graphic_2D::Draw_Coordinat()
+void Graphic_2D::Draw_Coordinates()
 {
 	GLfloat i;
 	Draw_Line(size_x, -size_x, 0, 0, color);

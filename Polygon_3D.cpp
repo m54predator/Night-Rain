@@ -1,4 +1,5 @@
 #include "Polygon_3D.h"
+#include "lodepng/lodepng.h"
 
 Polygon_3D::Polygon_3D()
 {
@@ -41,9 +42,9 @@ bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
 			for (size_t c = 0; c < 4; c++) {
 				image2[4 * u2 * y + 4 * x + c] = image[4 * width * y + 4 * x + c];
 			}
-	if (texture_referens) glDeleteTextures(1, &texture_referens);
-	glGenTextures(1, &texture_referens);
-	glBindTexture(GL_TEXTURE_2D, texture_referens);
+	if (texture_id) glDeleteTextures(1, &texture_id);
+	glGenTextures(1, &texture_id);
+	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, (GLsizei) height, (GLsizei) width, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
@@ -70,7 +71,7 @@ void Polygon_3D::Change_Color(const RGBA &_color)
 	color = _color;
 }
 
-void Polygon_3D::Change_Coordinats(const Coordinates &_coord)
+void Polygon_3D::Change_Coordinates(const Coordinates &_coord)
 {
 	coord = _coord;
 }
@@ -78,7 +79,7 @@ void Polygon_3D::Change_Coordinats(const Coordinates &_coord)
 void Polygon_3D::Render()
 {
 	glColor3f(color.r, color.g, color.b);
-	glBindTexture(GL_TEXTURE_2D, texture_referens);
+	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glBegin(GL_QUADS);
 	glTexCoord3f(0.0, 0.0, 0.0);
 	glVertex3f(coord.x[0], coord.y[0], coord.z[0]);

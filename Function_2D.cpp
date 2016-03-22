@@ -27,7 +27,7 @@ void Function_2D::Change_Color(const RGBA &_color)
 	color = _color;
 }
 
-void Function_2D::Change_Coordinats(const Coordinates &_coord)
+void Function_2D::Change_Coordinates(const Coordinates &_coord)
 {
 	coord = _coord;
 }

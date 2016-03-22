@@ -12,7 +12,7 @@ public:
 	CoreBase();
 	CoreBase(std::fstream &in);
 
-	~CoreBase();
+	virtual ~CoreBase();
 
 	Window *Create_window();
 	Window *Create_window(int x, int y);

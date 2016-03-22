@@ -24,18 +24,18 @@ void Point_2D::Change_Color(const RGBA &_color)
 	color = _color;
 }
 
-void Point_2D::Change_Coordinats(const Coordinates &_coord)
+void Point_2D::Change_Coordinates(const Coordinates &_coord)
 {
 	coord = _coord;
 }
 
-void Point_2D::Change_Coordinats(GLfloat x, GLfloat y)
+void Point_2D::Change_Coordinates(GLfloat x, GLfloat y)
 {
 	if (coord.x.size() > 0) coord.x[0] += x; else coord.x.push_back(x);
 	if (coord.y.size() > 0) coord.y[0] += y; else coord.y.push_back(y);
 }
 
-void Point_2D::Set_Coordinats(GLfloat x, GLfloat y)
+void Point_2D::Set_Coordinates(GLfloat x, GLfloat y)
 {
 	if (coord.x.size() > 0) coord.x[0] = x; else coord.x.push_back(x);
 	if (coord.y.size() > 0) coord.y[0] = y; else coord.y.push_back(y);

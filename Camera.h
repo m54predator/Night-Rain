@@ -48,8 +48,6 @@ public:
 	inline float focusmod(float x) const;
 
 	void camDirectUpdate();
-
-	void tick();
 };
 
 #endif /* _CAMERA_H */

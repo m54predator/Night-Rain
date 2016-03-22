@@ -1,26 +1,29 @@
 #ifndef _CORE_H
 #define _CORE_H
 
-#include "Event_Manager.h"
+#include "EventManager.h"
 #include "CoreBase.h"
 
-template<class User_Data>
-class Core : public CoreBase
+template<class User_Data_T>
+class Core: public CoreBase
 {
 public:
-	Core() : CoreBase()
+	Core()
+		: CoreBase()
 	{
-		_event_manager = new Event_Manager<User_Data>();
+		_event_manager = new EventManager<User_Data_T>();
 	}
 
-	Core(std::fstream &in) : CoreBase(in) {}
+	Core(std::fstream &in)
+		: CoreBase(in)
+	{ }
 
 	~Core()
 	{
 		delete _event_manager;
 	}
 
-	bool Run(User_Data *_user_data)
+	bool Run(User_Data_T *_user_data)
 	{
 
 		uint32_t frames = 0;
@@ -37,7 +40,7 @@ public:
 			unprocesed += (now - lastTick) / msPerTick;
 
 			if (unprocesed >= 1) {
-				_event_manager->Cheack(&_data, _user_data);
+				_event_manager->Check(&_data, _user_data);
 				unprocesed -= 1;
 				for (size_t i = 0; i < _data.windows.size(); i++)
 					_data.windows[i]->Display();
@@ -52,7 +55,7 @@ public:
 
 			uint32_t now2 = SDL_GetTicks();
 			if (now2 - lastTick < msPerTick) {
-				int maxWaitInMs = (int)(msPerTick - (now2 - lastTick));
+				int maxWaitInMs = (int) (msPerTick - (now2 - lastTick));
 				SDL_WaitEventTimeout(NULL, maxWaitInMs);
 			}
 			lastTick = now;
@@ -61,10 +64,13 @@ public:
 		return 0;
 	}
 
-	Event_Manager<User_Data> * getEventManager() const { return _event_manager; }
+	EventManager<User_Data_T> *getEventManager() const
+	{
+		return _event_manager;
+	}
 
 private:
-	Event_Manager<User_Data> *_event_manager;
+	EventManager<User_Data_T> *_event_manager;
 };
 
 #endif

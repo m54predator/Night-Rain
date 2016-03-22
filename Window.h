@@ -16,7 +16,7 @@ public:
 	virtual ~Window();
 
 	virtual void Create() = 0;
-	void Reshape(int Wid, int Heig);
+	void Reshape(int width, int height);
 	virtual void Display() = 0;
 	//virtual void Mouse(int button, int state, int x, int y) abstract;
 	virtual void init() = 0;

@@ -13,15 +13,15 @@ public:
 
 	std::vector<GLfloat> x, y, z;
 
-	Coordinates &operator=(const Coordinates &rhs)
-	{
-		if (this != &rhs) {
-			x = rhs.x;
-			y = rhs.y;
-			z = rhs.z;
-		}
-		return *this;
-	}
+//	/Coordinates &operator=(const Coordinates &rhs)
+//	{
+//		if (this != &rhs) {
+//			x = rhs.x;
+//			y = rhs.y;
+//			z = rhs.z;
+//		}
+//		return *this;
+//	}
 
 	void SetCoordinates(double _x, double _y, double _z);
 	void SetCoordinates(double _x, double _y);

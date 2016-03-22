@@ -41,10 +41,10 @@ void Window::Default()
 	window_name = "Window";
 }
 
-void Window::Reshape(int Wid, int Heig)
+void Window::Reshape(int width, int height)
 {
-	Wind_Wd = Wid;
-	Wind_Hg = Heig;
+	Wind_Wd = width;
+	Wind_Hg = height;
 	/*
 	glViewport(0, 0, Wind_Wd, Wind_Hg);
 

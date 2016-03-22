@@ -8,7 +8,7 @@ Scene_Object::~Scene_Object()
 {
 }
 
-Coordinates Scene_Object::Get_Coordinats()
+Coordinates Scene_Object::Get_Coordinates()
 {
 	return coord;
 }
