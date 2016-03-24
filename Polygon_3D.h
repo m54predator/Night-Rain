@@ -18,11 +18,8 @@ public:
 
 	bool Change_Texture(const std::string &fname);
 	bool Change_Texture(void *data, size_t w, size_t h);
-
-	std::string error_load_texture;
 private:
 	GLuint texture_id;
-	std::string texture_path;
 };
 
 #endif

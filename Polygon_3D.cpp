@@ -2,9 +2,10 @@
 #include "lodepng/lodepng.h"
 
 Polygon_3D::Polygon_3D()
+	: texture_id(0)
 {
 	color.Set_RGBA(1, 1, 1, 1);
-	for (int i = 0; i < 4; i++) {
+	for (size_t i = 0; i < 4; i++) {
 		coord.x.push_back(0);
 		coord.y.push_back(0);
 		coord.z.push_back(0);
@@ -13,6 +14,8 @@ Polygon_3D::Polygon_3D()
 
 Polygon_3D::~Polygon_3D()
 {
+	glDeleteTextures(1, &texture_id);
+	texture_id = 0;
 }
 
 bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
@@ -42,7 +45,10 @@ bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
 			for (size_t c = 0; c < 4; c++) {
 				image2[4 * u2 * y + 4 * x + c] = image[4 * width * y + 4 * x + c];
 			}
-	if (texture_id) glDeleteTextures(1, &texture_id);
+
+	if (texture_id)
+		glDeleteTextures(1, &texture_id);
+
 	glGenTextures(1, &texture_id);
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -54,13 +60,11 @@ bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
 
 bool Polygon_3D::Change_Texture(const std::string &fname)
 {
-	texture_path = fname;
-
 	std::vector<unsigned char> image, buffer;
 	unsigned width, height;
 	unsigned error;
 
-	lodepng::load_file(buffer, texture_path);
+	lodepng::load_file(buffer, fname);
 	error = lodepng::decode(image, width, height, buffer);
 
 	return Change_Texture(&*image.begin(), height, width);
