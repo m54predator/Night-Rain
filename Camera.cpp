@@ -2,8 +2,8 @@
 #define _USE_MATH_DEFINES TRUE
 #include <cmath>
 #include <climits>
+#include <limits>
 
-#define FOCUSMOD 4
 
 Camera::Camera()
 {
@@ -14,64 +14,43 @@ Camera::Camera()
 	camY = 0;
 	camZ = 0;
 
-	focus = false;
-
 	camDirectUpdate();
-}
-
-inline float Camera::focusmod(float x) const
-{
-	return focus ? x / FOCUSMOD : x;
-}
-
-void Camera::setFocus(bool _focus)
-{
-	focus = _focus;
-}
-
-bool Camera::getFocus() const
-{
-	return focus;
 }
 
 void Camera::moveForward(float speed)
 {
-	camX += focusmod(viewVecX) * speed;
-	camY += focusmod(viewVecY) * speed;
-	camZ += focusmod(viewVecZ) * speed;
+	camX += viewVecX * speed;
+	camY += viewVecY * speed;
+	camZ += viewVecZ * speed;
 }
 
 void Camera::moveBack(float speed)
 {
-	camX -= focusmod(viewVecX) * speed;
-	camY -= focusmod(viewVecY) * speed;
-	camZ -= focusmod(viewVecZ) * speed;
+	camX -= viewVecX * speed;
+	camY -= viewVecY * speed;
+	camZ -= viewVecZ * speed;
 }
 
 void Camera::moveUp(float speed)
 {
-	camY += focusmod(1) * speed;
+	camY += speed;
 }
 
 void Camera::moveDown(float speed)
 {
-	camY -= focusmod(1) * speed;
+	camY -= speed;
 }
 
 void Camera::moveLeft(float speed)
 {
-	float X = viewVecZinXZ;
-	float Z = -viewVecXinXZ;
-	camX += focusmod(X) * speed;
-	camZ += focusmod(Z) * speed;
+	camX += viewVecZinXZ * speed;
+	camZ -= viewVecXinXZ * speed;
 }
 
 void Camera::moveRight(float speed)
 {
-	float X = -viewVecZinXZ;
-	float Z = viewVecXinXZ;
-	camX += focusmod(X) * speed;
-	camZ += focusmod(Z) * speed;
+	camX -= viewVecZinXZ * speed;
+	camZ += viewVecXinXZ * speed;
 }
 
 void Camera::addAngleXZ(short add)
@@ -82,13 +61,20 @@ void Camera::addAngleXZ(short add)
 
 void Camera::addAngleH(short add)
 {
+	auto min = std::numeric_limits<short>::min();
+	auto max = std::numeric_limits<short>::max();
+
 	add *= 2;
 
-	if (((int) angleH + (int) add) < SHRT_MIN) angleH = (short) SHRT_MIN;
-
-	else if (((int) angleH + (int) add) > SHRT_MAX) angleH = (short) SHRT_MAX;
-
-	else angleH += add;
+	if (((int) angleH + (int) add) < min) {
+		angleH = min;
+	}
+	else if (((int) angleH + (int) add) > max) {
+		angleH = max;
+	}
+	else {
+		angleH += add;
+	}
 
 	camDirectUpdate();
 }
@@ -110,12 +96,14 @@ float Camera::lookAtZ() const
 
 float Camera::getAngleXZ() const
 {
-	return -((float) angleXZ) / (unsigned short) USHRT_MAX * 2 * M_PI;
+	auto max = std::numeric_limits<unsigned short>::max();
+	return (float) (-2 * M_PI * angleXZ / max);
 }
 
 float Camera::getAngleH() const
 {
-	return ((float) angleH) / (unsigned short) USHRT_MAX * M_PI;
+	auto max = std::numeric_limits<unsigned short>::max();
+	return (float) (M_PI * angleH / max);
 }
 
 void Camera::camDirectUpdate()

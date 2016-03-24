@@ -1,14 +1,6 @@
 #include "LookAt.h"
 #include <cmath>
 
-LookAt::LookAt()
-{
-}
-
-LookAt::~LookAt()
-{
-}
-
 void LookAt::MultiplyMatrices(std::vector<GLfloat> &result, std::vector<GLfloat> matrix1, std::vector<GLfloat> matrix2)
 {
 	for (int i = 0; i < 4; i++)

@@ -6,9 +6,6 @@
 class Function_2D: public Scene_Object
 {
 public:
-	Function_2D();
-	~Function_2D();
-
 	void Render() override;
 	void Change_Color(const RGBA &_color) override;
 	void Change_Coordinates(const Coordinates &_coord) override;

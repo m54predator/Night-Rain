@@ -2,14 +2,6 @@
 #include <cmath>
 #include <algorithm>
 
-Function_2D::Function_2D()
-{
-}
-
-Function_2D::~Function_2D()
-{
-}
-
 void Function_2D::Render()
 {
 	size_t size = std::min(coord.x.size(), coord.y.size());

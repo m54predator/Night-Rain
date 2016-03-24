@@ -4,6 +4,7 @@
 #include "Scene_Object.h"
 #include "Point_2D.h"
 #include "Function_2D.h"
+
 class Graphic_2D:
 	public Scene_Object
 {

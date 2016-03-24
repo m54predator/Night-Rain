@@ -2,15 +2,12 @@
 #define _LOOKAT_H
 
 #include <vector>
-#include "SDL.h"
+
 #include "SDL_opengl.h"
 
-#pragma once
 class LookAt
 {
 public:
-	LookAt();
-	~LookAt();
 	void LookAt_Set(std::vector<GLfloat> &matrix, std::vector<GLfloat> eyePosition3D,
 	                std::vector<GLfloat> center3D, std::vector<GLfloat> upVector3D);
 private:

@@ -45,7 +45,6 @@ public:
 
 	void setFocus(bool _focus);
 	bool getFocus() const;
-	inline float focusmod(float x) const;
 
 	void camDirectUpdate();
 };
