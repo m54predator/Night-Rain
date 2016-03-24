@@ -22,8 +22,6 @@ public:
 	unsigned short angleXZ;
 	short angleH;
 
-	bool focus;
-
 	Camera();
 
 	void moveForward(float speed);
@@ -42,9 +40,6 @@ public:
 
 	float getAngleXZ() const;
 	float getAngleH() const;
-
-	void setFocus(bool _focus);
-	bool getFocus() const;
 
 	void camDirectUpdate();
 };
