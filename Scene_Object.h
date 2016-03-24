@@ -7,8 +7,7 @@
 class Scene_Object
 {
 public:
-	Scene_Object();
-	virtual ~Scene_Object();
+	virtual ~Scene_Object() = default;
 
 	virtual void Render() = 0;
 	virtual void Change_Color(const RGBA &_color) = 0;
