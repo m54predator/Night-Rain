@@ -51,6 +51,6 @@ void Point_2D::Render()
 	glColor3f(color.r, color.g, color.b);
 	glPointSize(size);
 	glBegin(GL_POINTS);
-	glVertex2f(coord.x[0], coord.y[0]);
+	glVertex3d(coord.x[0], coord.y[0], -1);
 	glEnd();
 }
