@@ -23,7 +23,6 @@ void Scene::Render()
 	glEnable(GL_COLOR_MATERIAL);
 	glClearColor(_color.r, _color.g, _color.b, _color.a);
 	std::vector<GLfloat> look_matrix, eye, center, up;
-	GLfloat *set_matrix = new GLfloat[16];
 
 	eye.resize(3);
 	center.resize(3);
@@ -40,8 +39,7 @@ void Scene::Render()
 	up[1] = _camera.upDirectY;
 	up[2] = _camera.upDirectZ;
 
-	glGetFloatv(GL_PROJECTION_MATRIX, set_matrix);
-	look_matrix.assign(set_matrix, set_matrix + 16);
+	glGetFloatv(GL_PROJECTION_MATRIX, look_matrix.data());
 	LookAt::LookAt_Set(look_matrix, eye, center, up);
 	glPopMatrix();
 
