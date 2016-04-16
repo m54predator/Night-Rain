@@ -1,7 +1,7 @@
 #include "Simple_win.h"
 
 Simple_win::Simple_win()
-	: Window()
+	: err_txt(nullptr), persp(nullptr)
 {
 	main_scene = new Scene();
 }

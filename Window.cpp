@@ -1,23 +1,20 @@
 #include "Window.h"
 
 Window::Window()
-{
-	Wind_Wd = Wind_Hg = 0;
-	Default();
-}
+	: main_scene(nullptr),
+	  Wind_x(0), Wind_y(0), Wind_Wd(1280), Wind_Hg(600),
+	  Wind_reference(nullptr),
+	  window_name("Window")
+{ }
 
 Window::Window(std::iostream &in)
+	: Window()
 {
-	Default();
-
 	while (!in.eof()) {
 		in >> window_info;
 		Search(window_info, in);
 	}
 }
-
-Window::~Window()
-{ }
 
 void Window::Close()
 {
@@ -31,14 +28,6 @@ void Window::Search(const std::string &info, std::iostream &in)
 	if (!info.compare("Window_X")) in >> Wind_x;
 	if (!info.compare("Window_Y")) in >> Wind_y;
 	if (!info.compare("Window_Name")) std::getline(in, window_name);
-}
-
-void Window::Default()
-{
-	Wind_Hg = 600;
-	Wind_Wd = 1280;
-	Wind_x = Wind_y = 0;
-	window_name = "Window";
 }
 
 void Window::Reshape(int width, int height)

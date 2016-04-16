@@ -7,11 +7,8 @@ Win_err::Win_err()
 }
 
 Win_err::Win_err(std::iostream &in, const char *text)
-	: Window(in)
-{
-	err_txt = "text";
-
-}
+	: Window(in), err_txt("text")
+{ }
 
 Win_err::~Win_err()
 {

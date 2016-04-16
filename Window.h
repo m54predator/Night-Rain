@@ -15,8 +15,8 @@ public:
 	Scene *main_scene;
 
 	Window();
-	Window(std::iostream &in);
-	virtual ~Window();
+	explicit Window(std::iostream &in);
+	virtual ~Window() = default;
 
 	virtual void Create() = 0;
 	void Reshape(int width, int height);
@@ -38,7 +38,6 @@ private:
 	std::string window_info, window_value;
 
 	void Search(const std::string &info, std::iostream &in);
-	void Default();
 };
 
 #endif
