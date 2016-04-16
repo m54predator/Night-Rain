@@ -16,7 +16,7 @@ public:
 	void Change_Color(const RGBA &_color) override;
 	void Change_Coordinates(const Coordinates &_coord) override;
 
-	bool Change_Texture(const std::string &fname);
+	bool Change_Texture(const std::string &filename);
 	bool Change_Texture(void *data, size_t w, size_t h);
 private:
 	GLuint texture_id;

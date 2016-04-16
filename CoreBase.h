@@ -1,8 +1,9 @@
 #ifndef _CORE_BASE_H
 #define _CORE_BASE_H
 
-#include "Window.h"
 #include <vector>
+
+#include "Window.h"
 
 #include "Data.h"
 
@@ -10,7 +11,9 @@ class CoreBase
 {
 public:
 	CoreBase();
-	CoreBase(std::fstream &in);
+	explicit CoreBase(std::fstream &in);
+
+	CoreBase(CoreBase &) = delete; //nocopy
 
 	virtual ~CoreBase();
 

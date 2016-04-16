@@ -6,7 +6,7 @@
 #include "Simple_win.h"
 
 CoreBase::CoreBase()
-	: path_proj("Game"), engine_mode("Game")
+	: path_proj("Game"), engine_mode("Game"), win(nullptr)
 { }
 
 CoreBase::CoreBase(std::fstream &in)

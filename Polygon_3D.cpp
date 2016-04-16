@@ -4,12 +4,9 @@
 Polygon_3D::Polygon_3D()
 	: texture_id(0)
 {
-	color.Set_RGBA(1, 1, 1, 1);
-	for (size_t i = 0; i < 4; i++) {
-		coord.x.push_back(0);
-		coord.y.push_back(0);
-		coord.z.push_back(0);
-	}
+	coord.x.resize(4, 0);
+	coord.y.resize(4, 0);
+	coord.z.resize(4, 0);
 }
 
 Polygon_3D::~Polygon_3D()
@@ -58,14 +55,13 @@ bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
 	return 0;
 }
 
-bool Polygon_3D::Change_Texture(const std::string &fname)
+bool Polygon_3D::Change_Texture(const std::string &filename)
 {
 	std::vector<unsigned char> image, buffer;
 	unsigned width, height;
-	unsigned error;
 
-	lodepng::load_file(buffer, fname);
-	error = lodepng::decode(image, width, height, buffer);
+	lodepng::load_file(buffer, filename);
+	unsigned error = lodepng::decode(image, width, height, buffer);
 
 	return Change_Texture(&*image.begin(), height, width);
 }
@@ -85,13 +81,18 @@ void Polygon_3D::Render()
 	glColor3f(color.r, color.g, color.b);
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glBegin(GL_QUADS);
-	glTexCoord3f(0.0, 0.0, 0.0);
-	glVertex3f(coord.x[0], coord.y[0], coord.z[0]);
-	glTexCoord3f(1.0, 0.0, 1.0);
-	glVertex3f(coord.x[1], coord.y[1], coord.z[1]);
-	glTexCoord3f(1.0, 1.0, 1.0);
-	glVertex3f(coord.x[2], coord.y[2], coord.z[2]);
-	glTexCoord3f(0.0, 1.0, 0.0);
-	glVertex3f(coord.x[3], coord.y[3], coord.z[3]);
+	{
+		glTexCoord3f(0.0, 0.0, 0.0);
+		glVertex3f(coord.x[0], coord.y[0], coord.z[0]);
+
+		glTexCoord3f(1.0, 0.0, 1.0);
+		glVertex3f(coord.x[1], coord.y[1], coord.z[1]);
+
+		glTexCoord3f(1.0, 1.0, 1.0);
+		glVertex3f(coord.x[2], coord.y[2], coord.z[2]);
+
+		glTexCoord3f(0.0, 1.0, 0.0);
+		glVertex3f(coord.x[3], coord.y[3], coord.z[3]);
+	}
 	glEnd();
 }

@@ -4,6 +4,9 @@
 #include <fstream>
 #include <iostream> 
 #include <string>
+
+#include <SDL.h>
+
 #include "Scene.h"
 
 class Window

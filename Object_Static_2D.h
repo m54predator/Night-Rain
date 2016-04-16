@@ -16,7 +16,7 @@ public:
 	void Change_Color(const RGBA &_color) override;
 	void Change_Coordinates(const Coordinates &_coord) override;
 
-	void Change_Texture(const std::string &fname);
+	void Change_Texture(const std::string &filename);
 	void Set_Object(Scene_Object *_scene_object);
 
 private:
