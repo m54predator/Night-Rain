@@ -22,12 +22,7 @@ void Scene::Render()
 	glEnable(GL_LIGHT0);
 	glEnable(GL_COLOR_MATERIAL);
 	glClearColor(_color.r, _color.g, _color.b, _color.a);
-	std::vector<GLfloat> look_matrix, eye, center, up;
-
-	eye.resize(3);
-	center.resize(3);
-	up.resize(3);
-	look_matrix.resize(16);
+	std::vector<GLfloat> look_matrix(16), eye(3), center(3), up(3);
 
 	eye[0] = _camera.camX;
 	eye[1] = _camera.camY;
@@ -47,8 +42,7 @@ void Scene::Render()
 	glLoadIdentity();
 	glMultMatrixf(look_matrix.data());
 
-	size_t SizeObject = Objects.size();
-	for (size_t i = 0; i < SizeObject; i++)
+	for (size_t i = 0; i < Objects.size(); i++)
 		Objects[i]->Render();
 }
 
