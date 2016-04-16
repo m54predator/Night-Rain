@@ -16,8 +16,8 @@ void LookAt::Translate(std::vector<GLfloat> &matrix, GLfloat x, GLfloat y, GLflo
 }
 
 void LookAt::ComputeNormalOfPlane(std::vector<GLfloat> &normal,
-                                  const std::vector<GLfloat> pvector1,
-                                  const std::vector<GLfloat> pvector2)
+                                  const std::vector<GLfloat> &pvector1,
+                                  const std::vector<GLfloat> &pvector2)
 {
 	normal[0] = (pvector1[1] * pvector2[2]) - (pvector1[2] * pvector2[1]);
 	normal[1] = (pvector1[2] * pvector2[0]) - (pvector1[0] * pvector2[2]);
