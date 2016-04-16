@@ -1,13 +1,8 @@
 #include "RGBA.h"
 
 RGBA::RGBA()
-{
-	Set_RGBA(1);
-}
-
-RGBA::~RGBA()
-{
-}
+	: r(1), g(1), b(1), a(1)
+{ }
 
 void RGBA::Set_RGBA(GLfloat _r, GLfloat _g, GLfloat _b, GLfloat _a)
 {
