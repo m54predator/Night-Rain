@@ -1,5 +1,7 @@
 #include "Scene.h"
 
+#include "LookAt.h"
+
 Scene::Scene()
 {
 	_color.Set_RGBA(0, 0, 0, 1);
@@ -40,7 +42,7 @@ void Scene::Render()
 
 	glGetFloatv(GL_PROJECTION_MATRIX, set_matrix);
 	look_matrix.assign(set_matrix, set_matrix + 16);
-	_lookat.LookAt_Set(look_matrix, eye, center, up);
+	LookAt::LookAt_Set(look_matrix, eye, center, up);
 	glPopMatrix();
 
 	glMatrixMode(GL_PROJECTION);
