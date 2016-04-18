@@ -43,7 +43,7 @@ void CoreBase::Search(const std::string &info, std::fstream &in)
 
 void *CoreBase::addNewSimpleWin()
 {
-	Simple_win *win = new Simple_win();
+	auto  win = new Simple_win();
 	_data.windows.push_back(win);
 	return win;
 }

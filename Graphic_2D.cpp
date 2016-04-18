@@ -79,7 +79,7 @@ void Graphic_2D::Set_Object(Scene_Object *_scene_object)
 
 void Graphic_2D::Set_Point(GLfloat x, GLfloat y, const RGBA &_color)
 {
-	Point_2D *_point = new Point_2D(x, y, _color);
+	auto  _point = new Point_2D(x, y, _color);
 	Set_Object(_point);
 }
 

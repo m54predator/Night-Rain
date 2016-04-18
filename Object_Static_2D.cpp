@@ -8,8 +8,8 @@ Object_Static_2D::Object_Static_2D()
 
 Object_Static_2D::~Object_Static_2D()
 {
-	for (size_t i = 0; i < scene_objects.size(); i++)
-		delete scene_objects[i];
+	for (auto & elem : scene_objects)
+		delete elem;
 }
 
 void Object_Static_2D::Change_Texture(const std::string &filename)
@@ -53,8 +53,8 @@ void Object_Static_2D::Render()
 	}
 	glEnd();
 
-	for (size_t i = 0; i < scene_objects.size(); i++)
-		scene_objects[i]->Render();
+	for (auto & elem : scene_objects)
+		elem->Render();
 }
 
 void Object_Static_2D::Set_Object(Scene_Object *_scene_object)
