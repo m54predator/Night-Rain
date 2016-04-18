@@ -30,7 +30,9 @@ public:
 		return newEvent;
 	}
 
-	NR_event<User_Data_T> *Set_user_event(Callback<Data *, User_Data_T *> *_function, Uint32 _key, User_Data_T *_user_data)
+	NR_event<User_Data_T> *Set_user_event(Callback<Data *, User_Data_T *> *_function,
+	                                      Uint32 _key,
+	                                      User_Data_T *_user_data)
 	{
 		NR_event<User_Data_T> *newEvent = new NR_event<User_Data_T>();
 		newEvent->Create(_function, _key);

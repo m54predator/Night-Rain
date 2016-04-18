@@ -31,19 +31,24 @@ CoreBase::CoreBase(std::fstream &in)
 CoreBase::~CoreBase()
 {
 	size_t windowSize = _data.windows.size();
-	for (size_t i = 0; i < windowSize; i++)
+	for (size_t i = 0; i < windowSize; i++) {
 		delete _data.windows[i];
+	}
 }
 
 void CoreBase::Search(const std::string &info, std::fstream &in)
 {
-	if (!info.compare("Path")) in >> path_proj;
-	if (!info.compare("Mode")) in >> engine_mode;
+	if (!info.compare("Path")) {
+		in >> path_proj;
+	}
+	if (!info.compare("Mode")) {
+		in >> engine_mode;
+	}
 }
 
 void *CoreBase::addNewSimpleWin()
 {
-	auto  win = new Simple_win();
+	auto win = new Simple_win();
 	_data.windows.push_back(win);
 	return win;
 }
@@ -79,6 +84,7 @@ void CoreBase::Close_All_Windows()
 {
 	size_t i;
 	_data.run = false;
-	for (i = 0; i < _data.windows.size(); i++)
+	for (i = 0; i < _data.windows.size(); i++) {
 		_data.windows[i]->Close();
+	}
 }

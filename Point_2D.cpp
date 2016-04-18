@@ -31,14 +31,26 @@ void Point_2D::Change_Coordinates(const Coordinates &_coord)
 
 void Point_2D::Change_Coordinates(GLfloat x, GLfloat y)
 {
-	if (coord.x.size() > 0) coord.x[0] += x; else coord.x.push_back(x);
-	if (coord.y.size() > 0) coord.y[0] += y; else coord.y.push_back(y);
+	if (coord.x.size() > 0) { coord.x[0] += x; }
+	else {
+		coord.x.push_back(x);
+	}
+	if (coord.y.size() > 0) { coord.y[0] += y; }
+	else {
+		coord.y.push_back(y);
+	}
 }
 
 void Point_2D::Set_Coordinates(GLfloat x, GLfloat y)
 {
-	if (coord.x.size() > 0) coord.x[0] = x; else coord.x.push_back(x);
-	if (coord.y.size() > 0) coord.y[0] = y; else coord.y.push_back(y);
+	if (coord.x.size() > 0) { coord.x[0] = x; }
+	else {
+		coord.x.push_back(x);
+	}
+	if (coord.y.size() > 0) { coord.y[0] = y; }
+	else {
+		coord.y.push_back(y);
+	}
 }
 
 void Point_2D::Change_Size(GLfloat _size)

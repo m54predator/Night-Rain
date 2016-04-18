@@ -3,16 +3,20 @@
 
 void LookAt::MultiplyMatrices(std::vector<GLfloat> &result, std::vector<GLfloat> matrix1, std::vector<GLfloat> matrix2)
 {
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j < 4; j++)
-			for (int k = 0; k < 4; k++)
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			for (int k = 0; k < 4; k++) {
 				result[i + j * 4] += matrix1[i + k * 4] * matrix2[k + j * 4];
+			}
+		}
+	}
 }
 
 void LookAt::Translate(std::vector<GLfloat> &matrix, GLfloat x, GLfloat y, GLfloat z)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++) {
 		matrix[i + 12] = matrix[i] * x + matrix[i + 4] * y + matrix[i + 8] * z + matrix[i + 12];
+	}
 }
 
 void LookAt::ComputeNormalOfPlane(std::vector<GLfloat> &normal,
@@ -29,11 +33,13 @@ void LookAt::NormalizeVector(std::vector<GLfloat> &pvector)
 	GLfloat normalizingConstant;
 	int i;
 	normalizingConstant = 0;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 3; i++) {
 		normalizingConstant += std::pow(pvector[i], 2);
+	}
 	normalizingConstant = 1.0 / sqrt(normalizingConstant);
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 3; i++) {
 		pvector[i] *= normalizingConstant;
+	}
 }
 
 void LookAt::LookAt_Set(std::vector<GLfloat> &matrix, std::vector<GLfloat> eyePosition3D,

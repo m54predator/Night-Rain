@@ -8,8 +8,9 @@ void Function_2D::Render()
 
 	glColor3f(color.r, color.g, color.b);
 	glBegin(GL_LINES);
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < size; i++) {
 		glVertex2d(coord.x[i], coord.y[i]);
+	}
 	glEnd();
 
 }

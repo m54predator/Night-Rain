@@ -1,6 +1,8 @@
 #ifndef _CAMERA_H
 #define _CAMERA_H
 
+#include <cstdint>
+
 class Camera
 {
 public:
@@ -19,8 +21,8 @@ public:
 	float upDirectY;
 	float upDirectZ;
 
-	unsigned short angleXZ;
-	short angleH;
+	uint16_t angleXZ;
+	int16_t angleH;
 
 	Camera();
 

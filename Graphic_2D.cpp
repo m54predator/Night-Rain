@@ -13,8 +13,9 @@ Graphic_2D::Graphic_2D()
 Graphic_2D::~Graphic_2D()
 {
 	size_t i, size = scene_objects.size();
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size; i++) {
 		delete scene_objects[i];
+	}
 }
 
 void Graphic_2D::Render()
@@ -24,8 +25,9 @@ void Graphic_2D::Render()
 	Draw_Coordinates();
 
 	size = scene_objects.size();
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size; i++) {
 		scene_objects[i]->Render();
+	}
 }
 
 void Graphic_2D::Change_Color(const RGBA &_color)
@@ -79,7 +81,7 @@ void Graphic_2D::Set_Object(Scene_Object *_scene_object)
 
 void Graphic_2D::Set_Point(GLfloat x, GLfloat y, const RGBA &_color)
 {
-	auto  _point = new Point_2D(x, y, _color);
+	auto _point = new Point_2D(x, y, _color);
 	Set_Object(_point);
 }
 
@@ -87,6 +89,7 @@ void Graphic_2D::Set_Points(std::vector<Point_2D *> _points, const RGBA &_color)
 {
 	size_t i, size;
 	size = _points.size();
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size; i++) {
 		Set_Object(_points[i]);
+	}
 }

@@ -23,11 +23,21 @@ void Window::Close()
 
 void Window::Search(const std::string &info, std::iostream &in)
 {
-	if (!info.compare("Width")) in >> Wind_Wd;
-	if (!info.compare("Height")) in >> Wind_Hg;
-	if (!info.compare("Window_X")) in >> Wind_x;
-	if (!info.compare("Window_Y")) in >> Wind_y;
-	if (!info.compare("Window_Name")) std::getline(in, window_name);
+	if (!info.compare("Width")) {
+		in >> Wind_Wd;
+	}
+	if (!info.compare("Height")) {
+		in >> Wind_Hg;
+	}
+	if (!info.compare("Window_X")) {
+		in >> Wind_x;
+	}
+	if (!info.compare("Window_Y")) {
+		in >> Wind_y;
+	}
+	if (!info.compare("Window_Name")) {
+		std::getline(in, window_name);
+	}
 }
 
 void Window::Reshape(int width, int height)
@@ -82,16 +92,22 @@ void Window::Run()
 
 			while (SDL_PollEvent(&event)) {
 				std::cout << (event.type == SDL_WINDOWEVENT) << std::endl;
-				if (event.type == SDL_QUIT) run = false;
+				if (event.type == SDL_QUIT) {
+					run = false;
+				}
 			}
 			unprocesed -= 1;
 			Display();
 			frames++;
-			if (!(frames % 60)) std::cout << "frame " << frames << std::endl;
+			if (!(frames % 60)) {
+				std::cout << "frame " << frames << std::endl;
+			}
 		}
 
 		uint32_t now2 = SDL_GetTicks();
-		if (now2 - lastTick < msPerTick) SDL_WaitEventTimeout(&event, msPerTick - (now2 - lastTick));
+		if (now2 - lastTick < msPerTick) {
+			SDL_WaitEventTimeout(&event, msPerTick - (now2 - lastTick));
+		}
 		lastTick = now;
 	}
 }

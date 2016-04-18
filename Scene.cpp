@@ -42,8 +42,9 @@ void Scene::Render()
 	glLoadIdentity();
 	glMultMatrixf(look_matrix.data());
 
-	for (auto & elem : Objects)
+	for (auto &elem : Objects) {
 		elem->Render();
+	}
 }
 
 void Scene::SetObject(Scene_Object *new_object)

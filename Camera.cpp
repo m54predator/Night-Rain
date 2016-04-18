@@ -53,23 +53,23 @@ void Camera::moveRight(float speed)
 	camZ += viewVecXinXZ * speed;
 }
 
-void Camera::addAngleXZ(short add)
+void Camera::addAngleXZ(int16_t add)
 {
 	angleXZ += add;
 	camDirectUpdate();
 }
 
-void Camera::addAngleH(short add)
+void Camera::addAngleH(int16_t add)
 {
-	auto min = std::numeric_limits<short>::min();
-	auto max = std::numeric_limits<short>::max();
+	auto min = std::numeric_limits<int16_t>::min();
+	auto max = std::numeric_limits<int16_t>::max();
 
 	add *= 2;
 
-	if (((int) angleH + (int) add) < min) {
+	if ((static_cast<int>( angleH) + static_cast<int>( add)) < min) {
 		angleH = min;
 	}
-	else if (((int) angleH + (int) add) > max) {
+	else if ((static_cast<int>( angleH) + static_cast<int>( add)) > max) {
 		angleH = max;
 	}
 	else {
@@ -96,14 +96,14 @@ float Camera::lookAtZ() const
 
 float Camera::getAngleXZ() const
 {
-	auto max = std::numeric_limits<unsigned short>::max();
-	return (float) (-2 * M_PI * angleXZ / max);
+	auto max = std::numeric_limits<uint16_t>::max();
+	return static_cast<float> (-2 * M_PI * angleXZ / max);
 }
 
 float Camera::getAngleH() const
 {
-	auto max = std::numeric_limits<unsigned short>::max();
-	return (float) (M_PI * angleH / max);
+	auto max = std::numeric_limits<uint16_t>::max();
+	return static_cast<float> (M_PI * angleH / max);
 }
 
 void Camera::camDirectUpdate()
