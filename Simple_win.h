@@ -1,6 +1,8 @@
 #ifndef _SIMPLE_WIN_H
 #define _SIMPLE_WIN_H
 
+#include <array>
+
 #include "Window.h"
 #include "Scene.h"
 
@@ -20,8 +22,7 @@ public:
 	void KeyBoard(unsigned char key, int x, int y);
 
 private:
-	std::string *err_txt;
-	GLfloat *persp;
+	std::array<GLfloat, 16> persp;
 	void Perspective(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat _near, GLfloat _far);
 };
 

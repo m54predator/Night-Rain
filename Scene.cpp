@@ -36,7 +36,6 @@ void Scene::Render()
 
 	glGetFloatv(GL_PROJECTION_MATRIX, look_matrix.data());
 	LookAt::LookAt_Set(look_matrix, eye, center, up);
-	glPopMatrix();
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
