@@ -31,8 +31,7 @@ void Simple_win::Display()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-
-	glMultMatrixf(persp.begin());
+	glMultMatrixf(persp.data());
 	SDL_GL_MakeCurrent(Wind_reference, glcontext);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
