@@ -9,15 +9,15 @@
 class Scene
 {
 public:
-	std::vector<Scene_Object *> Objects;
-	RGBA _color;
-
 	Scene();
-	~Scene();
+
 	void Render();
 	void SetObject(Scene_Object *new_object);
-	void Change_Color(const RGBA &color);
-	Camera _camera;
+	void Change_Color(const RGBA &_color);
+
+	RGBA color;
+	Camera camera;
+	std::vector<Scene_Object *> objects;
 };
 
 #endif

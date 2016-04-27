@@ -7,6 +7,8 @@ class RGBA
 {
 public:
 	RGBA();
+	RGBA(GLfloat _r, GLfloat _g, GLfloat _b, GLfloat _a);
+	explicit RGBA(GLfloat _x);
 
 	void Set_RGBA(GLfloat _r, GLfloat _g, GLfloat _b, GLfloat _a);
 	void Set_RGBA(GLfloat _x);
