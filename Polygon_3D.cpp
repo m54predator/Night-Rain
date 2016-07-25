@@ -2,7 +2,6 @@
 #include "lodepng/lodepng.h"
 
 Polygon_3D::Polygon_3D()
-	: texture_id(0)
 {
 	coord.x.resize(4, 0);
 	coord.y.resize(4, 0);
@@ -11,66 +10,10 @@ Polygon_3D::Polygon_3D()
 
 Polygon_3D::~Polygon_3D()
 {
-	glDeleteTextures(1, &texture_id);
-	texture_id = 0;
+	_texture_id.reset();
 }
 
-bool Polygon_3D::Change_Texture(void *data, size_t w, size_t h)
-{
-	std::vector<unsigned char> image;
-	size_t width, height;
-	image.resize(w * h * 4);
 
-	std::copy(reinterpret_cast<unsigned char *>( data),
-	          (reinterpret_cast<unsigned char *>( data)) + w * h * 4,
-	          image.begin());
-	width = w;
-	height = h;
-
-
-	// Texture size must be power of two for the primitive OpenGL version this is written for. Find next power of two.
-	size_t u2 = 1;
-	while (u2 < width) {
-		u2 *= 2;
-	}
-	size_t v2 = 1;
-	while (v2 < height) {
-		v2 *= 2;
-	}
-	// Ratio for power of two version compared to actual version, to render the non power of two image with proper size.
-	double u3 = static_cast<double>( width) / u2;
-	double v3 = static_cast<double>( height) / v2;
-
-	// Make power of two version of the image.
-	std::vector<unsigned char> image2(u2 * v2 * 4);
-	for (size_t y = 0; y < height; y++) {
-		for (size_t x = 0; x < width; x++) {
-			for (size_t c = 0; c < 4; c++) {
-				image2[4 * u2 * y + 4 * x + c] = image[4 * width * y + 4 * x + c];
-			}
-		}
-	}
-
-	if (texture_id) {
-		glDeleteTextures(1, &texture_id);
-	}
-
-	glGenTextures(1, &texture_id);
-	glBindTexture(GL_TEXTURE_2D, texture_id);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D,
-	             0,
-	             4,
-	             static_cast<GLsizei>( height),
-	             static_cast<GLsizei>( width),
-	             0,
-	             GL_RGBA,
-	             GL_UNSIGNED_BYTE,
-	             &image[0]);
-
-	return 0;
-}
 
 bool Polygon_3D::Change_Texture(const std::string &filename)
 {
@@ -79,13 +22,23 @@ bool Polygon_3D::Change_Texture(const std::string &filename)
 	
 	lodepng::load_file(buffer, filename);
 	unsigned error = lodepng::decode(image, width, height, buffer);
-	w = width; h = height; data = image;
-	return Change_Texture(&*image.begin(), height, width);
+	bool fl = _texture_id.operator bool();
+	if (_texture_id.operator bool()) _texture_id.reset();
+	_texture_id = std::make_shared<Texture> ();
+	return _texture_id->Set_Texture(&*image.begin(), height, width);
 }
 
 bool Polygon_3D::Change_Texture(std::vector<unsigned char> data, size_t _w, size_t _h)
 {
-	return Change_Texture(&*data.begin(), w, h);
+	if (_texture_id.operator bool()) _texture_id.reset();
+	_texture_id = std::make_shared<Texture>();
+	return _texture_id->Set_Texture(&*data.begin(), _w, _h);
+}
+
+bool Polygon_3D::Change_Texture(const Polygon_3D &_polygon)
+{
+	_texture_id = _polygon._texture_id;
+	return 0;
 }
 
 void Polygon_3D::Change_Color(const RGBA &_color)
@@ -101,7 +54,7 @@ void Polygon_3D::Change_Coordinates(const Coordinates &_coord)
 void Polygon_3D::Render()
 {
 	glColor3f(color.r, color.g, color.b);
-	glBindTexture(GL_TEXTURE_2D, texture_id);
+	glBindTexture(GL_TEXTURE_2D, _texture_id->texture_id);
 	glBegin(GL_QUADS);
 	{
 		glTexCoord3f(0.0, 0.0, 0.0);
