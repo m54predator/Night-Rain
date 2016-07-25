@@ -7,7 +7,7 @@ class Data
 {
 public:
 	bool run = false;
-	Sint32 mouse_motion_x, mouse_motion_y;
+	Sint32 mouse_motion_x, mouse_motion_y, mouse_click_x, mouse_click_y;
 	Uint32 _tick = 0;
 	std::vector<Window *> windows;
 };

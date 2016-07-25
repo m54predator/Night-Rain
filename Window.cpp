@@ -111,3 +111,13 @@ void Window::Run()
 		lastTick = now;
 	}
 }
+
+void Window::RelativeMouseModeOff()
+{
+	SDL_SetRelativeMouseMode(SDL_FALSE);
+}
+
+void Window::RelativeMouseModeOn()
+{
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+}
