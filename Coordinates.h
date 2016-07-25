@@ -12,7 +12,7 @@ public:
 	void SetCoordinates(double _x);
 	void Clear();
 
-	std::vector<GLfloat> x, y, z;
+	std::vector<GLdouble> x, y, z;
 };
 
 #endif

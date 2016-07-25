@@ -13,6 +13,7 @@ public:
 
 	void Render();
 	void SetObject(Scene_Object *new_object);
+	void SetObject(std::vector<Scene_Object> new_object);
 	void Change_Color(const RGBA &_color);
 
 	RGBA color;
