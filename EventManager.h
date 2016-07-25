@@ -50,12 +50,15 @@ public:
 				for (size_t i = 0; i < n; i++)
 					if ((UserEventList[i]->run) && (UserEventList[i]->key == SDLEvent.key.keysym.sym))
 						UserEventList[i]->function->operator()(_data, _user_data);
-			if (SDLEvent.type == SDL_MOUSEMOTION) {
+			if ((SDLEvent.type >= SDL_MOUSEMOTION) && (SDLEvent.type <= SDL_MOUSEWHEEL))
+			{
 				_data->mouse_motion_x = SDLEvent.motion.xrel;
 				_data->mouse_motion_y = SDLEvent.motion.yrel;
+				_data->mouse_click_x = SDLEvent.button.x;
+				_data->mouse_click_y = SDLEvent.button.y;
 
 				for (size_t i = 0; i < n; i++)
-					if ((UserEventList[i]->run) && (UserEventList[i]->key == SDL_MOUSEMOTION))
+					if ((UserEventList[i]->run) && (UserEventList[i]->key == SDLEvent.type))
 						UserEventList[i]->function->operator()(_data, _user_data);
 			}
 

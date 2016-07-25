@@ -25,6 +25,8 @@ public:
 	virtual void init() = 0;
 	void Close();
 	void Run();
+	void RelativeMouseModeOff();
+	void RelativeMouseModeOn();
 
 protected:
 	int Wind_x, Wind_y, Wind_Wd, Wind_Hg;
