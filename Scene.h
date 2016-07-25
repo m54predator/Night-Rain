@@ -16,6 +16,7 @@ public:
 	~Scene();
 	void Render();
 	void SetObject(Scene_Object *new_object);
+	void SetObject(std::vector<Scene_Object> new_object);
 	void Change_Color(const RGBA &color);
 	Camera _camera;
 };

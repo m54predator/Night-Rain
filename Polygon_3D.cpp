@@ -76,11 +76,16 @@ bool Polygon_3D::Change_Texture(const std::string &filename)
 {
 	std::vector<unsigned char> image, buffer;
 	unsigned width, height;
-
+	
 	lodepng::load_file(buffer, filename);
 	unsigned error = lodepng::decode(image, width, height, buffer);
-
+	w = width; h = height; data = image;
 	return Change_Texture(&*image.begin(), height, width);
+}
+
+bool Polygon_3D::Change_Texture(std::vector<unsigned char> data, size_t _w, size_t _h)
+{
+	return Change_Texture(&*data.begin(), w, h);
 }
 
 void Polygon_3D::Change_Color(const RGBA &_color)
