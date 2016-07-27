@@ -26,3 +26,10 @@ void Coordinates::Clear()
 	y.clear();
 	z.clear();
 }
+
+void Coordinates::Resize(int _size)
+{
+	x.resize(_size);
+	y.resize(_size);
+	z.resize(_size);
+}

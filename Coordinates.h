@@ -7,6 +7,7 @@
 class Coordinates
 {
 public:
+	void Resize(int _size);
 	void SetCoordinates(double _x, double _y, double _z);
 	void SetCoordinates(double _x, double _y);
 	void SetCoordinates(double _x);
