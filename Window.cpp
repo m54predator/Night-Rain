@@ -1,14 +1,13 @@
 #include "Window.h"
 
-Window::Window()
-	: main_scene(nullptr),
-	  Wind_x(0), Wind_y(0), Wind_Wd(1280), Wind_Hg(600),
-	  Wind_reference(nullptr),
-	  window_name("Window")
-{ }
+Window::Window() :
+		Wind_x(0), Wind_y(0), Wind_Wd(1280), Wind_Hg(600),
+		Wind_reference(nullptr),
+		window_name("Window")
+{}
 
-Window::Window(std::iostream &in)
-	: Window()
+Window::Window(std::iostream &in) :
+		Window()
 {
 	while (!in.eof()) {
 		in >> window_info;
@@ -112,12 +111,7 @@ void Window::Run()
 	}
 }
 
-void Window::RelativeMouseModeOff()
+void Window::SetRelativeMouseMode(bool mode)
 {
-	SDL_SetRelativeMouseMode(SDL_FALSE);
-}
-
-void Window::RelativeMouseModeOn()
-{
-	SDL_SetRelativeMouseMode(SDL_TRUE);
+	SDL_SetRelativeMouseMode(mode ? SDL_TRUE : SDL_FALSE);
 }

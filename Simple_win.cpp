@@ -2,14 +2,9 @@
 
 Simple_win::Simple_win()
 {
-	main_scene = new Scene();
+	main_scene = std::make_unique<Scene>();
 	std::fill(std::begin(persp), std::end(persp), 0);
 	persp[14] = -1.0f;
-}
-
-Simple_win::~Simple_win()
-{
-	delete main_scene;
 }
 
 void Simple_win::Mouse(int button, int state, int x, int y)
@@ -71,7 +66,7 @@ void Simple_win::Create()
 	}
 
 	Wind_reference =
-		SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+			SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
 

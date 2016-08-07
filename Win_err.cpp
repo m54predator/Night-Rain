@@ -1,18 +1,13 @@
 #include "Win_err.h"
 
 Win_err::Win_err()
-	: Window()
 {
-	main_scene = new Scene();
+	main_scene = std::make_unique<Scene>();
 }
 
-Win_err::Win_err(std::iostream &in, const char *text)
-	: Window(in), err_txt("text")
-{ }
-
-Win_err::~Win_err()
-{
-}
+Win_err::Win_err(std::iostream &in, const char *text) :
+		Window(in), err_txt("text")
+{}
 
 void Win_err::Mouse(int button, int state, int x, int y)
 {
@@ -79,8 +74,7 @@ void Win_err::Create()
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 	}
 
-	Wind_reference =
-		SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	Wind_reference = SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
 

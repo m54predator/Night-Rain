@@ -3,13 +3,13 @@
 
 #include "Window.h"
 
-class Win_err:
-	public Window
+class Win_err :
+		public Window
 {
 public:
 	Win_err();
 	Win_err(std::iostream &in, const char *text);
-	virtual ~Win_err();
+
 	void Create();
 	void init();
 	void Create(const std::string &str);

@@ -36,7 +36,7 @@ add_subdirectory(../SDL/ SDL)
 
 add_library(night_rain ${night_rain_SOURCE_FILES})
 
-set_property(TARGET night_rain PROPERTY CXX_STANDARD 11)
+set_property(TARGET night_rain PROPERTY CXX_STANDARD 14)
 
 target_include_directories(night_rain PUBLIC ../SDL/include)
 target_include_directories(night_rain PUBLIC ${night_rain_SOURCE_DIR})

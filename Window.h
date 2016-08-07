@@ -6,13 +6,14 @@
 #include <string>
 
 #include <SDL.h>
+#include <memory>
 
 #include "Scene.h"
 
 class Window
 {
 public:
-	Scene *main_scene;
+	std::unique_ptr<Scene> main_scene;
 
 	Window();
 	explicit Window(std::iostream &in);
@@ -25,8 +26,7 @@ public:
 	virtual void init() = 0;
 	void Close();
 	void Run();
-	void RelativeMouseModeOff();
-	void RelativeMouseModeOn();
+	void SetRelativeMouseMode(bool mode);
 
 protected:
 	int Wind_x, Wind_y, Wind_Wd, Wind_Hg;
