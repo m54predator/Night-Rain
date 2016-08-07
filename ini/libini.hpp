@@ -68,12 +68,6 @@ namespace libini
 		return ltrim(rtrim(s));
 	}
 
-	ini_model parse(std::string data)
-	{
-		std::istringstream stream(data);
-		return parse(stream);
-	}
-
 	ini_model parse(std::istream &stream)
 	{
 		ini_model model;
@@ -107,6 +101,12 @@ namespace libini
 		}
 
 		return model;
+	}
+
+	ini_model parse(std::string data)
+	{
+		std::istringstream stream(data);
+		return parse(stream);
 	}
 }
 

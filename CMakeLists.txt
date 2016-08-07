@@ -3,6 +3,10 @@ project(night_rain)
 
 find_package(OpenGL REQUIRED)
 
+set(night_rain_SOURCE_LIB_FILES
+        ini/libini.hpp
+        lodepng/lodepng.cpp lodepng/lodepng.h)
+
 set(night_rain_SOURCE_FILES
         Coordinates.cpp Coordinates.h
         Core.cpp Core.h
@@ -22,10 +26,9 @@ set(night_rain_SOURCE_FILES
         EventManager.cpp EventManager.h
         Data.cpp Data.h
         Polygon_3D.cpp Polygon_3D.h
-        lodepng/lodepng.cpp lodepng/lodepng.h
         LookAt.cpp LookAt.h
         Camera.cpp Camera.h
-		Texture.cpp Texture.h)
+        Texture.cpp Texture.h)
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
@@ -34,7 +37,7 @@ SET(FORCE_STATIC_VCRT ON CACHE BOOL "Force /MT for static VC runtimes")
 
 add_subdirectory(../SDL/ SDL)
 
-add_library(night_rain ${night_rain_SOURCE_FILES})
+add_library(night_rain ${night_rain_SOURCE_FILES} ${night_rain_SOURCE_LIB_FILES})
 
 set_property(TARGET night_rain PROPERTY CXX_STANDARD 14)
 
