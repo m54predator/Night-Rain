@@ -9,7 +9,7 @@ class Texture
 public:
 	Texture();
 	~Texture();
-	bool Set_Texture(void *data, size_t _w, size_t _h);
+	bool Set_Texture(const unsigned char *data, size_t _w, size_t _h);
 	GLuint texture_id;
 private:
 	

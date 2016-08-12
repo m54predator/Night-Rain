@@ -8,12 +8,12 @@
 #include "Texture.h"
 
 
-class Polygon_3D
-	: public Scene_Object
+class Polygon_3D :
+		public Scene_Object
 {
 public:
 	Polygon_3D();
-	~Polygon_3D();
+	~Polygon_3D() override;
 
 	void Render() override;
 	void Change_Color(const RGBA &_color) override;
@@ -22,10 +22,10 @@ public:
 	bool Change_Texture(void *data, size_t _w, size_t _h);
 	bool Change_Texture(const Polygon_3D &_polygon);
 	bool Change_Texture(const std::string &filename);
-	
+
 private:
 	std::shared_ptr<Texture> _texture_id;
-	
+
 };
 
 #endif

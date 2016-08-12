@@ -1,8 +1,8 @@
 #ifndef _COORDINATES_H
 #define _COORDINATES_H
 
-#include <vector>
 #include <SDL_opengl.h>
+#include <vector>
 
 class Coordinates
 {

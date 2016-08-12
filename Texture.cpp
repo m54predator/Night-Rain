@@ -9,15 +9,13 @@ Texture::~Texture()
 	glDeleteTextures(1, &texture_id);
 }
 
-bool Texture::Set_Texture(void *data, size_t w, size_t h)
+bool Texture::Set_Texture(const unsigned char *data, size_t w, size_t h)
 {
 	std::vector<unsigned char> image;
 	size_t width, height;
 	image.resize(w * h * 4);
 
-	std::copy(reinterpret_cast<unsigned char *>(data),
-		(reinterpret_cast<unsigned char *>(data)) + w * h * 4,
-		image.begin());
+	std::copy(data, data + w * h * 4, image.begin());
 	width = w;
 	height = h;
 
@@ -50,14 +48,14 @@ bool Texture::Set_Texture(void *data, size_t w, size_t h)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D,
-		0,
-		4,
-		static_cast<GLsizei>(height),
-		static_cast<GLsizei>(width),
-		0,
-		GL_RGBA,
-		GL_UNSIGNED_BYTE,
-		&image[0]);
+	             0,
+	             4,
+	             static_cast<GLsizei>(height),
+	             static_cast<GLsizei>(width),
+	             0,
+	             GL_RGBA,
+	             GL_UNSIGNED_BYTE,
+	             &image[0]);
 
 	return 0;
 }
