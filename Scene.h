@@ -2,6 +2,7 @@
 #define _SCENE_H
 
 #include <vector>
+#include <memory>
 #include "Scene_Object.h"
 
 #include "Camera.h"
@@ -17,7 +18,7 @@ public:
 	void Change_Color(const RGBA &_color);
 
 	RGBA color;
-	Camera camera;
+	std::shared_ptr<Camera> camera;
 	std::vector<Scene_Object *> objects;
 };
 

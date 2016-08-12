@@ -13,7 +13,7 @@
 class Window
 {
 public:
-	std::unique_ptr<Scene> main_scene;
+	std::shared_ptr<Scene> main_scene;
 
 	Window();
 	explicit Window(std::iostream &in);

@@ -4,7 +4,9 @@ Window::Window() :
 		Wind_x(0), Wind_y(0), Wind_Wd(1280), Wind_Hg(600),
 		Wind_reference(nullptr),
 		window_name("Window")
-{}
+{
+	main_scene = std::make_shared<Scene>();
+}
 
 Window::Window(std::iostream &in) :
 		Window()

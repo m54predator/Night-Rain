@@ -28,11 +28,18 @@ bool Polygon_3D::Change_Texture(const std::string &filename)
 	return _texture_id->Set_Texture(&*image.begin(), height, width);
 }
 
-bool Polygon_3D::Change_Texture(std::vector<unsigned char> data, size_t _w, size_t _h)
+bool Polygon_3D::Change_Texture(const std::vector<unsigned char> &data, size_t _w, size_t _h)
 {
 	if (_texture_id.operator bool()) _texture_id.reset();
 	_texture_id = std::make_shared<Texture>();
-	return _texture_id->Set_Texture(&*data.begin(), _w, _h);
+	return _texture_id->Set_Texture(&data.begin(), _w, _h);
+}
+
+bool Polygon_3D::Change_Texture(void *data, size_t _w, size_t _h)
+{
+	if (_texture_id.operator bool()) _texture_id.reset();
+	_texture_id = std::make_shared<Texture>();
+	return _texture_id->Set_Texture(data, _w, _h);
 }
 
 bool Polygon_3D::Change_Texture(const Polygon_3D &_polygon)

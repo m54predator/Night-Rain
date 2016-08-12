@@ -2,6 +2,7 @@
 #define _EVENT_MANAGER_H
 
 #include <vector>
+#include <memory>
 #include "NR_event.h"
 
 template<class User_Data_T>
@@ -32,7 +33,7 @@ public:
 
 	NR_event<User_Data_T> *Set_user_event(Callback<Data *, User_Data_T *> *_function,
 	                                      Uint32 _key,
-	                                      User_Data_T *_user_data)
+	                                      std::shared_ptr<User_Data_T> _user_data)
 	{
 		NR_event<User_Data_T> *newEvent = new NR_event<User_Data_T>();
 		newEvent->Create(_function, _key);
