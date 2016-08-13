@@ -11,19 +11,16 @@ public:
 	Core()
 		: CoreBase()
 	{
-		_event_manager = new EventManager<User_Data_T>();
+		_event_manager = std::make_shared<EventManager<User_Data_T>>();
 	}
 
 	Core(std::fstream &in)
 		: CoreBase(in)
 	{ }
 
-	~Core()
-	{
-		delete _event_manager;
-	}
+	~Core() = default;
 
-	bool Run(User_Data_T *_user_data)
+	bool Run(std::shared_ptr<User_Data_T> _user_data)
 	{
 
 		uint32_t frames = 0;
@@ -40,7 +37,7 @@ public:
 			unprocesed += (now - lastTick) / msPerTick;
 
 			if (unprocesed >= 1) {
-				_event_manager->Check(&_data, _user_data);
+				_event_manager->Check(_data, _user_data);
 				unprocesed -= 1;
 				for (size_t i = 0; i < _data.windows.size(); i++)
 					_data.windows[i]->Display();
@@ -64,13 +61,13 @@ public:
 		return 0;
 	}
 
-	EventManager<User_Data_T> *getEventManager() const
+	std::shared_ptr<EventManager<User_Data_T>> getEventManager() const
 	{
 		return _event_manager;
 	}
 
 private:
-	EventManager<User_Data_T> *_event_manager;
+	std::shared_ptr<EventManager<User_Data_T>> _event_manager;
 };
 
 #endif

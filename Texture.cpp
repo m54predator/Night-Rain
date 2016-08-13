@@ -1,9 +1,5 @@
 #include "Texture.h"
 
-Texture::Texture()
-{
-}
-
 Texture::~Texture()
 {
 	glDeleteTextures(1, &texture_id);

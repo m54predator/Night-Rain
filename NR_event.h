@@ -12,28 +12,26 @@ public:
 	int timer;
 	Uint32 key;
 	bool run;
-	Callback<Data *, User_Data_T *> *function;
-	NR_event()
-	{ }
+	std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> function;
+	NR_event() = default;
 
-	~NR_event()
-	{ }
+	~NR_event() = default;
 
-	void Create(Callback<Data *, User_Data_T *> *_function)
+	void Create(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function)
 	{
 		function = _function;
 		timer = 1;
 		run = true;
 	};
 
-	void Create(Callback<Data *, User_Data_T *> *_function, int _timer)
+	void Create(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function, int _timer)
 	{
 		function = _function;
 		timer = _timer;
 		run = true;
 	};
 
-	void Create(Callback<Data *, User_Data_T *> *_function, Uint32 _key)
+	void Create(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function, Uint32 _key)
 	{
 		function = _function;
 		timer = 0;

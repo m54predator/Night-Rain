@@ -9,39 +9,37 @@ template<class User_Data_T>
 class EventManager
 {
 public:
-	EventManager()
-	{ }
+	EventManager() = default;
 
-	~EventManager()
-	{ }
+	~EventManager() = default;
 
-	NR_event<User_Data_T> *Set_event(Callback<Data *, User_Data_T *> *_function)
+	std::shared_ptr<NR_event<User_Data_T>> Set_event(Callback<Data *, User_Data_T *> *_function)
 	{
-		NR_event<User_Data_T> *newEvent = new NR_event<User_Data_T>();
+		std::shared_ptr<NR_event<User_Data_T>> newEvent = std::make_shared<NR_event<User_Data_T>>();
 		newEvent->Create(_function);
 		EventList.push_back(newEvent);
 		return newEvent;
 	}
 
-	NR_event<User_Data_T> *Set_event(Callback<Data *, User_Data_T *> *_function, int _timer)
+	std::shared_ptr<NR_event<User_Data_T>> Set_event(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function, int _timer)
 	{
-		NR_event<User_Data_T> *newEvent = new NR_event<User_Data_T>();
+		std::shared_ptr<NR_event<User_Data_T>> newEvent = std::make_shared<NR_event<User_Data_T>>();
 		newEvent->Create(_function, _timer);
 		EventList.push_back(newEvent);
 		return newEvent;
 	}
 
-	NR_event<User_Data_T> *Set_user_event(Callback<Data *, User_Data_T *> *_function,
+	std::shared_ptr<NR_event<User_Data_T>> Set_user_event(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function,
 	                                      Uint32 _key,
 	                                      std::shared_ptr<User_Data_T> _user_data)
 	{
-		NR_event<User_Data_T> *newEvent = new NR_event<User_Data_T>();
+		std::shared_ptr<NR_event<User_Data_T>> newEvent = std::make_shared<NR_event<User_Data_T>>();
 		newEvent->Create(_function, _key);
 		UserEventList.push_back(newEvent);
 		return newEvent;
 	}
 
-	void Check(Data *_data, User_Data_T *_user_data)
+	void Check(Data &_data, std::shared_ptr<User_Data_T> _user_data)
 	{
 		size_t n = UserEventList.size();
 
@@ -53,10 +51,10 @@ public:
 						UserEventList[i]->function->operator()(_data, _user_data);
 			if ((SDLEvent.type >= SDL_MOUSEMOTION) && (SDLEvent.type <= SDL_MOUSEWHEEL))
 			{
-				_data->mouse_motion_x = SDLEvent.motion.xrel;
-				_data->mouse_motion_y = SDLEvent.motion.yrel;
-				_data->mouse_click_x = SDLEvent.button.x;
-				_data->mouse_click_y = SDLEvent.button.y;
+				_data.mouse_motion_x = SDLEvent.motion.xrel;
+				_data.mouse_motion_y = SDLEvent.motion.yrel;
+				_data.mouse_click_x = SDLEvent.button.x;
+				_data.mouse_click_y = SDLEvent.button.y;
 
 				for (size_t i = 0; i < n; i++)
 					if ((UserEventList[i]->run) && (UserEventList[i]->key == SDLEvent.type))
@@ -67,13 +65,13 @@ public:
 
 		n = EventList.size();
 		for (size_t i = 0; i < n; i++)
-			if ((EventList[i]->timer) && (EventList[i]->run) && (_data->_tick % EventList[i]->timer == 0))
+			if ((EventList[i]->timer) && (EventList[i]->run) && (_data._tick % EventList[i]->timer == 0))
 				EventList[i]->function->operator()(_data, _user_data);
 
 	}
 
 	SDL_Event SDLEvent;
-	std::vector<NR_event<User_Data_T> *> EventList, UserEventList;
+	std::vector<std::shared_ptr<NR_event<User_Data_T>>> EventList, UserEventList;
 };
 
 #endif
