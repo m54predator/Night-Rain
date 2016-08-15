@@ -13,7 +13,7 @@ public:
 
 	~EventManager() = default;
 
-	std::shared_ptr<NR_event<User_Data_T>> Set_event(Callback<Data *, User_Data_T *> *_function)
+	std::shared_ptr<NR_event<User_Data_T>> Set_event(std::shared_ptr<std::function<void(Data &, std::shared_ptr<User_Data_T>)>> _function)
 	{
 		std::shared_ptr<NR_event<User_Data_T>> newEvent = std::make_shared<NR_event<User_Data_T>>();
 		newEvent->Create(_function);
@@ -21,7 +21,7 @@ public:
 		return newEvent;
 	}
 
-	std::shared_ptr<NR_event<User_Data_T>> Set_event(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function, int _timer)
+	std::shared_ptr<NR_event<User_Data_T>> Set_event(std::shared_ptr<std::function<void(Data &, std::shared_ptr<User_Data_T>)>> _function, int _timer)
 	{
 		std::shared_ptr<NR_event<User_Data_T>> newEvent = std::make_shared<NR_event<User_Data_T>>();
 		newEvent->Create(_function, _timer);
@@ -29,7 +29,7 @@ public:
 		return newEvent;
 	}
 
-	std::shared_ptr<NR_event<User_Data_T>> Set_user_event(std::shared_ptr<Callback<Data &, std::shared_ptr<User_Data_T>>> _function,
+	std::shared_ptr<NR_event<User_Data_T>> Set_user_event(std::shared_ptr<std::function<void(Data &, std::shared_ptr<User_Data_T>)>> _function,
 	                                      Uint32 _key,
 	                                      std::shared_ptr<User_Data_T> _user_data)
 	{
