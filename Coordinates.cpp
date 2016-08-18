@@ -1,23 +1,23 @@
 #include "Coordinates.h"
 
-void Coordinates::SetCoordinates(double _x, double _y, double _z)
+void Coordinates::SetCoordinates(GLfloat _x, GLfloat _y, GLfloat _z)
 {
-	x.push_back(static_cast<GLdouble>(_x));
-	y.push_back(static_cast<GLdouble>(_y));
-	z.push_back(static_cast<GLdouble>(_z));
+	x.push_back(_x);
+	y.push_back(_y);
+	z.push_back(_z);
 }
 
-void Coordinates::SetCoordinates(double _x, double _y)
+void Coordinates::SetCoordinates(GLfloat _x, GLfloat _y)
 {
-	x.push_back(static_cast<GLdouble>(_x));
-	y.push_back(static_cast<GLdouble>(_y));
+	x.push_back(_x);
+	y.push_back(_y);
 }
 
-void Coordinates::SetCoordinates(double _x)
+void Coordinates::SetCoordinates(GLfloat _x)
 {
-	x.push_back(static_cast<GLdouble>(_x));
-	y.push_back(static_cast<GLdouble>(_x));
-	z.push_back(static_cast<GLdouble>(_x));
+	x.push_back(_x);
+	y.push_back(_x);
+	z.push_back(_x);
 }
 
 void Coordinates::Clear()

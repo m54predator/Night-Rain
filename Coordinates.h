@@ -8,12 +8,12 @@ class Coordinates
 {
 public:
 	void Resize(int _size);
-	void SetCoordinates(double _x, double _y, double _z);
-	void SetCoordinates(double _x, double _y);
-	void SetCoordinates(double _x);
+	void SetCoordinates(GLfloat _x, GLfloat _y, GLfloat _z);
+	void SetCoordinates(GLfloat _x, GLfloat _y);
+	void SetCoordinates(GLfloat _x);
 	void Clear();
 
-	std::vector<GLdouble> x, y, z;
+	std::vector<GLfloat> x, y, z;
 };
 
 #endif

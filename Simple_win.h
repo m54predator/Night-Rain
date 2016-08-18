@@ -18,9 +18,6 @@ public:
 	void init();
 	void Display();
 
-	void Mouse(int button, int state, int x, int y);
-	void KeyBoard(unsigned char key, int x, int y);
-
 private:
 	std::array<GLfloat, 16> persp;
 	void Perspective(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat _near, GLfloat _far);

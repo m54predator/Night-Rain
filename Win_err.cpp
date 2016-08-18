@@ -9,19 +9,6 @@ Win_err::Win_err(std::iostream &in, const char *text) :
 		Window(in), err_txt("text")
 {}
 
-void Win_err::Mouse(int button, int state, int x, int y)
-{
-	/*if (button == GLUT_LEFT_BUTTON)
-		switch (state){
-		case GLUT_DOWN: ld = 1; mx = x; my = y; break;
-		case GLUT_UP: ld = 0; break;
-	}
-	if (button == GLUT_RIGHT_BUTTON)
-		switch (state){
-		case GLUT_DOWN: rd = 1; mx = x; my = y; break;
-		case GLUT_UP: rd = 0; break;
-	}*/
-}
 
 void Win_err::Display()
 {

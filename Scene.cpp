@@ -43,12 +43,12 @@ void Scene::Render()
 	}
 }
 
-void Scene::SetObject(Scene_Object *new_object)
+void Scene::SetObject(Scene_Object &new_object)
 {
-	objects.push_back(new_object);
+	objects.push_back(&new_object);
 }
 
-void Scene::SetObject(std::vector<Scene_Object> new_object)
+void Scene::SetObject(std::vector<Scene_Object> &new_object)
 {
 	for (size_t i = 0; i < new_object.size(); ++i)
 		objects.push_back(&new_object[i]);

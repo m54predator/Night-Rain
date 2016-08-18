@@ -20,7 +20,7 @@ public:
 
 	~Core() = default;
 
-	bool Run(std::shared_ptr<User_Data_T> _user_data)
+	bool Run(std::shared_ptr<User_Data_T> &_user_data)
 	{
 
 		uint32_t frames = 0;
