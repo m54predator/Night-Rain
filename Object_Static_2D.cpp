@@ -6,12 +6,6 @@ Object_Static_2D::Object_Static_2D()
 	coord.y.resize(4, 0);
 }
 
-Object_Static_2D::~Object_Static_2D()
-{
-	for (auto &elem : scene_objects) {
-		delete elem;
-	}
-}
 
 void Object_Static_2D::Change_Texture(const std::string &filename)
 {
@@ -59,7 +53,7 @@ void Object_Static_2D::Render()
 	}
 }
 
-void Object_Static_2D::Set_Object(Scene_Object *_scene_object)
+void Object_Static_2D::Set_Object(const std::shared_ptr<Scene_Object> &_scene_object)
 {
 	scene_objects.push_back(_scene_object);
 }

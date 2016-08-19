@@ -13,13 +13,13 @@ public:
 	Scene();
 
 	void Render();
-	void SetObject(Scene_Object &new_object);
-	void SetObject(std::vector<Scene_Object> &new_object);
+	void SetObject(const std::shared_ptr<Scene_Object> &new_object);
+	void SetObject(const std::vector<std::shared_ptr<Scene_Object>> &new_object);
 	void Change_Color(const RGBA &_color);
 
 	RGBA color;
 	std::shared_ptr<Camera> camera;
-	std::vector<Scene_Object *> objects;
+	std::vector<std::shared_ptr<Scene_Object>> objects;
 };
 
 #endif

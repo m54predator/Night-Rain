@@ -8,8 +8,7 @@ class Point_2D
 {
 public:
 	Point_2D();
-	Point_2D(GLfloat x, GLfloat y, RGBA _color);
-	~Point_2D();
+	Point_2D(GLfloat x, GLfloat y, const RGBA &_color);
 
 	void Render() override;
 	void Change_Color(const RGBA &_color) override;

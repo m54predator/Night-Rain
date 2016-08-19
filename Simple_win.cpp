@@ -2,7 +2,6 @@
 
 Simple_win::Simple_win()
 {
-	main_scene = std::make_unique<Scene>();
 	std::fill(std::begin(persp), std::end(persp), 0);
 	persp[14] = -1.0f;
 }
