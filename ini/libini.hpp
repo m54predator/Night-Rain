@@ -36,7 +36,7 @@ namespace libini
 	using key_val = std::map<std::string, std::string>;
 	using ini_model = std::map<std::string, key_val>;
 
-	static inline std::vector<std::string> split(const std::string string, const char delimeter)
+	static inline std::vector<std::string> split(const std::string &string, const char delimeter)
 	{
 		std::vector<std::string> strings;
 
