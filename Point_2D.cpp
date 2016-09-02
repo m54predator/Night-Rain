@@ -7,7 +7,7 @@ Point_2D::Point_2D()
 	size = 5;
 }
 
-Point_2D::Point_2D(GLfloat x, GLfloat y, RGBA _color)
+Point_2D::Point_2D(GLfloat x, GLfloat y, const RGBA &_color)
 {
 	coord.x.push_back(x);
 	coord.y.push_back(y);
@@ -15,9 +15,6 @@ Point_2D::Point_2D(GLfloat x, GLfloat y, RGBA _color)
 	size = 5;
 }
 
-Point_2D::~Point_2D()
-{
-}
 
 void Point_2D::Change_Color(const RGBA &_color)
 {

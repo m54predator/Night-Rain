@@ -21,20 +21,13 @@ CoreBase::CoreBase(std::fstream &in)
 	//in.close();
 	std::fstream inp;
 	inp.open("Win_err.config", std::ios::in);
-	win = new Win_err(inp, "Exception opening/reading/closing file\n");
+	win = std::make_shared<Win_err>(inp, "Exception opening/reading/closing file\n");
 	inp.close();
 
 	std::string win_path = std::string(path_proj) + "/Wind.config";
 	inp >> win_path;
 }
 
-CoreBase::~CoreBase()
-{
-	size_t windowSize = _data.windows.size();
-	for (size_t i = 0; i < windowSize; i++) {
-		delete _data.windows[i];
-	}
-}
 
 void CoreBase::Search(const std::string &info, std::fstream &in)
 {
@@ -46,35 +39,31 @@ void CoreBase::Search(const std::string &info, std::fstream &in)
 	}
 }
 
-void *CoreBase::addNewSimpleWin()
+std::shared_ptr<Simple_win> CoreBase::addNewSimpleWin()
 {
-	auto win = new Simple_win();
+	auto win = std::make_shared<Simple_win>();
 	_data.windows.push_back(win);
 	return win;
 }
 
-Window *CoreBase::Create_window()
+std::shared_ptr<Window> CoreBase::Create_window()
 {
-	addNewSimpleWin();
-	Simple_win *win = static_cast<Simple_win *>(_data.windows.back());
+	std::shared_ptr<Simple_win> win = addNewSimpleWin();
 	win->Create();
-
 	return win;
 }
 
-Window *CoreBase::Create_window(int x, int y)
+std::shared_ptr<Window> CoreBase::Create_window(int x, int y)
 {
-	addNewSimpleWin();
-	Simple_win *win = static_cast<Simple_win *>(_data.windows.back());
+	std::shared_ptr<Simple_win> win = addNewSimpleWin();
 	win->Create(x, y);
 
 	return win;
 }
 
-Window *CoreBase::Create_window(int x, int y, int wd, int hg)
+std::shared_ptr<Window> CoreBase::Create_window(int x, int y, int wd, int hg)
 {
-	addNewSimpleWin();
-	Simple_win *win = static_cast<Simple_win *>(_data.windows.back());
+	std::shared_ptr<Simple_win> win = addNewSimpleWin();
 	win->Create(x, y, wd, hg);
 
 	return win;

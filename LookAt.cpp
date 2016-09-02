@@ -1,7 +1,7 @@
 #include "LookAt.h"
 #include <cmath>
 
-void LookAt::MultiplyMatrices(std::vector<GLfloat> &result, std::vector<GLfloat> matrix1, std::vector<GLfloat> matrix2)
+void LookAt::MultiplyMatrices(std::vector<GLfloat> &result, const std::vector<GLfloat> &matrix1, const std::vector<GLfloat> &matrix2)
 {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
@@ -42,8 +42,8 @@ void LookAt::NormalizeVector(std::vector<GLfloat> &pvector)
 	}
 }
 
-void LookAt::LookAt_Set(std::vector<GLfloat> &matrix, std::vector<GLfloat> eyePosition3D,
-                        std::vector<GLfloat> center3D, std::vector<GLfloat> upVector3D)
+void LookAt::LookAt_Set(std::vector<GLfloat> &matrix, const std::vector<GLfloat> &eyePosition3D,
+                        const std::vector<GLfloat> &center3D, const std::vector<GLfloat> &upVector3D)
 {
 	std::vector<GLfloat> forward, side, up, matrix2, resultMatrix;
 

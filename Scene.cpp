@@ -8,6 +8,7 @@ Scene::Scene()
 	camera = std::make_shared<Camera>();
 }
 
+
 void Scene::Render()
 {
 	glClearDepth(1.0f);
@@ -43,15 +44,14 @@ void Scene::Render()
 	}
 }
 
-void Scene::SetObject(Scene_Object *new_object)
+void Scene::SetObject(const std::shared_ptr<Scene_Object> &new_object)
 {
 	objects.push_back(new_object);
 }
 
-void Scene::SetObject(std::vector<Scene_Object> new_object)
+void Scene::SetObject(const std::vector<std::shared_ptr<Scene_Object>> &new_object)
 {
-	for (size_t i = 0; i < new_object.size(); ++i)
-		objects.push_back(&new_object[i]);
+	objects.insert(objects.end(), new_object.begin(), new_object.end());
 }
 
 void Scene::Change_Color(const RGBA &_color)

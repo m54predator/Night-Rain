@@ -14,7 +14,6 @@ public:
 	void init();
 	void Create(const std::string &str);
 	void Display();
-	void Mouse(int button, int state, int x, int y);
 
 protected:
 

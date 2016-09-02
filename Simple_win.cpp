@@ -2,25 +2,10 @@
 
 Simple_win::Simple_win()
 {
-	main_scene = std::make_unique<Scene>();
 	std::fill(std::begin(persp), std::end(persp), 0);
 	persp[14] = -1.0f;
 }
 
-void Simple_win::Mouse(int button, int state, int x, int y)
-{
-
-	/*if (button == GLUT_LEFT_BUTTON)
-	switch (state){
-	case GLUT_DOWN: ld = 1; mx = x; my = y; break;
-	case GLUT_UP: ld = 0; break;
-	}
-	if (button == GLUT_RIGHT_BUTTON)
-	switch (state){
-	case GLUT_DOWN: rd = 1; mx = x; my = y; break;
-	case GLUT_UP: rd = 0; break;
-	}*/
-}
 
 void Simple_win::Display()
 {
@@ -55,9 +40,6 @@ void Simple_win::init()
 	glDisable(GL_ALPHA_TEST);
 }
 
-void Simple_win::KeyBoard(unsigned char key, int x, int y)
-{
-}
 
 void Simple_win::Create()
 {

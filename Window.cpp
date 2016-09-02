@@ -45,19 +45,6 @@ void Window::Reshape(int width, int height)
 {
 	Wind_Wd = width;
 	Wind_Hg = height;
-	/*
-	glViewport(0, 0, Wind_Wd, Wind_Hg);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	gluPerspective(90, GLdouble(Wind_Wd) / Wind_Hg, 1, 200);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 1);
-	glutPostRedisplay();
-	*/
 }
 
 void Window::PrintString(void *font, std::string str)

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Window.h"
+#include "Simple_win.h"
 
 #include "Data.h"
 
@@ -15,21 +16,21 @@ public:
 
 	CoreBase(CoreBase &) = delete; //nocopy
 
-	virtual ~CoreBase();
+	virtual ~CoreBase() = default;
 
-	Window *Create_window();
-	Window *Create_window(int x, int y);
-	Window *Create_window(int x, int y, int wd, int hg);
+	std::shared_ptr<Window> Create_window();
+	std::shared_ptr<Window> Create_window(int x, int y);
+	std::shared_ptr<Window> Create_window(int x, int y, int wd, int hg);
 	Data _data;
 
 private:
 	std::string core_info, path_proj, engine_mode;
-	Window *win;
+	std::shared_ptr<Window> win;
 	void Close_All_Windows();
 
 	void Search(const std::string &info, std::fstream &in);
 
-	void *addNewSimpleWin();
+	std::shared_ptr<Simple_win> addNewSimpleWin();
 };
 
 

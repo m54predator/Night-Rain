@@ -10,13 +10,6 @@ Graphic_2D::Graphic_2D()
 	size_segment = 0.02;
 }
 
-Graphic_2D::~Graphic_2D()
-{
-	size_t i, size = scene_objects.size();
-	for (i = 0; i < size; i++) {
-		delete scene_objects[i];
-	}
-}
 
 void Graphic_2D::Render()
 {
@@ -47,7 +40,7 @@ void Graphic_2D::Change_Size(GLfloat _x, GLfloat _y, GLfloat _step)
 	size_step = _step;
 }
 
-void Graphic_2D::Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, const RGBA &_color)
+void Graphic_2D::Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, const RGBA &_color) const
 {
 	glColor3f(_color.r, _color.g, _color.b);
 	glBegin(GL_LINES);
@@ -56,7 +49,7 @@ void Graphic_2D::Draw_Line(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2, const
 	glEnd();
 }
 
-void Graphic_2D::Draw_Coordinates()
+void Graphic_2D::Draw_Coordinates() const
 {
 	GLfloat i;
 	Draw_Line(size_x, -size_x, 0, 0, color);
@@ -74,22 +67,17 @@ void Graphic_2D::Draw_Coordinates()
 	}
 }
 
-void Graphic_2D::Set_Object(Scene_Object *_scene_object)
+void Graphic_2D::Set_Object(const std::shared_ptr<Scene_Object> &_scene_object)
 {
 	scene_objects.push_back(_scene_object);
 }
 
 void Graphic_2D::Set_Point(GLfloat x, GLfloat y, const RGBA &_color)
 {
-	auto _point = new Point_2D(x, y, _color);
-	Set_Object(_point);
+	scene_objects.push_back(std::make_shared<Point_2D>(x, y, _color));
 }
 
-void Graphic_2D::Set_Points(std::vector<Point_2D *> _points, const RGBA &_color)
+void Graphic_2D::Set_Points(const std::vector<std::shared_ptr<Point_2D>> &_points)
 {
-	size_t i, size;
-	size = _points.size();
-	for (i = 0; i < size; i++) {
-		Set_Object(_points[i]);
-	}
+	scene_objects.insert(scene_objects.end(), _points.begin(), _points.end());
 }
