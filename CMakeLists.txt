@@ -36,6 +36,8 @@ set(night_rain_SOURCE_FILES
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
+SET(VIDEO_WAYLAND OFF CACHE BOOL "disable wayland for sdl2")
+
 SET(FORCE_STATIC_VCRT ON CACHE BOOL "Force /MT for static VC runtimes")
 
 
