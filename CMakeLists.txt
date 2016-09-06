@@ -29,7 +29,9 @@ set(night_rain_SOURCE_FILES
         LookAt.cpp LookAt.h
         Camera.cpp Camera.h
         Texture.cpp Texture.h
-		Shaders.cpp Shaders.h)
+		Shaders.cpp Shaders.h
+		Shaders_Func.cpp Shaders_Func.h
+		Shader_Programm.cpp Shader_Programm.h)
 
 
 SET(DIRECTX OFF CACHE BOOL "disable directx for sdl2")
