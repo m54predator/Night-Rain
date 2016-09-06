@@ -1,7 +1,20 @@
 #include "Shaders_Handler.h"
 
-Shaders_Handler::Shaders_Handler()
+Shaders_Handler::Shaders_Handler() : init(false)
+{};
+
+void Shaders_Handler::Init()
 {
+	Shaders_Func::InitShaders();
+	Shaders_Func::glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
+	Shader shad(std::string(
+		"varying vec4 v_color;\n"
+		"\n"
+		"void main()\n"
+		"{\n"
+		"    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;\n"
+		"    v_color = gl_Color;\n"
+		"}"), 1);
 	shader_color = std::make_unique<Shader_Programm>(Shader(std::string(
 		"varying vec4 v_color;\n"
 		"\n"
@@ -60,6 +73,7 @@ Shaders_Handler::Shaders_Handler()
 		"    color.a = 1.0 - (dist * 4.0);\n"
 		"    gl_FragColor = color;\n"
 		"}"), 0));
+	init = true;
 }
 
 std::shared_ptr<Shader_Programm> Shaders_Handler::Add_Shaders(const std::string &fragShader, const std::string &vertexShader)
@@ -70,6 +84,7 @@ std::shared_ptr<Shader_Programm> Shaders_Handler::Add_Shaders(const std::string 
 
 void Shaders_Handler::All_Compile()
 {
+	if (!init) this->Init();
 	shader_color->CompileShaderProgram();
 	shader_texture->CompileShaderProgram(); 
 	shader_texcoords->CompileShaderProgram();

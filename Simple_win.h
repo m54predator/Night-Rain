@@ -5,6 +5,7 @@
 
 #include "Window.h"
 #include "Scene.h"
+#include "Shaders_Handler.h"
 
 class Simple_win :
 		public Window
@@ -20,6 +21,7 @@ public:
 
 private:
 	std::array<GLfloat, 16> persp;
+	Shaders_Handler shader_handler;
 	void Perspective(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat _near, GLfloat _far);
 };
 

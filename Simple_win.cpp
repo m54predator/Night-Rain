@@ -51,7 +51,8 @@ void Simple_win::Create()
 			SDL_CreateWindow(window_name.c_str(), 0, 0, Wind_Wd, Wind_Hg, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
-
+	shader_handler.Init();
+	shader_handler.All_Compile();
 }
 
 void Simple_win::Create(int _wind_x, int _wind_y)

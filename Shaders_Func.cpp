@@ -1,5 +1,19 @@
 #include "Shaders_Func.h"
 
+SDL_bool Shaders_Func::shaders_supported = SDL_FALSE;
+PFNGLATTACHOBJECTARBPROC Shaders_Func::glAttachObjectARB = NULL;
+PFNGLCOMPILESHADERARBPROC Shaders_Func::glCompileShaderARB = NULL;
+PFNGLCREATEPROGRAMOBJECTARBPROC Shaders_Func::glCreateProgramObjectARB = NULL;
+PFNGLCREATESHADEROBJECTARBPROC Shaders_Func::glCreateShaderObjectARB = NULL;
+PFNGLDELETEOBJECTARBPROC Shaders_Func::glDeleteObjectARB = NULL;
+PFNGLGETINFOLOGARBPROC Shaders_Func::glGetInfoLogARB = NULL;
+PFNGLGETOBJECTPARAMETERIVARBPROC Shaders_Func::glGetObjectParameterivARB = NULL;
+PFNGLGETUNIFORMLOCATIONARBPROC Shaders_Func::glGetUniformLocationARB = NULL;
+PFNGLLINKPROGRAMARBPROC Shaders_Func::glLinkProgramARB = NULL;
+PFNGLSHADERSOURCEARBPROC Shaders_Func::glShaderSourceARB = NULL;
+PFNGLUNIFORM1IARBPROC Shaders_Func::glUniform1iARB = NULL;
+PFNGLUSEPROGRAMOBJECTARBPROC Shaders_Func::glUseProgramObjectARB = NULL;
+
 SDL_bool Shaders_Func::InitShaders() {
 	/* Check for shader support */
 	shaders_supported = SDL_FALSE;
