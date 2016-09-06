@@ -13,13 +13,9 @@ Graphic_2D::Graphic_2D()
 
 void Graphic_2D::Render()
 {
-	size_t i, size;
-
 	Draw_Coordinates();
-
-	size = scene_objects.size();
-	for (i = 0; i < size; i++) {
-		scene_objects[i]->Render();
+	for (auto &i : scene_objects) {
+		i->Render();
 	}
 }
 
