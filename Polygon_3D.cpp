@@ -66,20 +66,31 @@ void Polygon_3D::Change_Coordinates(const Coordinates &_coord)
 void Polygon_3D::Render()
 {
 	glColor3f(color.r, color.g, color.b);
-	glBindTexture(GL_TEXTURE_2D, _texture_id->texture_id);
-	glBegin(GL_QUADS);
+	if (_texture_id.operator bool())
 	{
-		glTexCoord3f(0.0, 0.0, 0.0);
-		glVertex3f(coord.x[0], coord.y[0], coord.z[0]);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, _texture_id->texture_id);
+	}
+	glBegin(GL_POLYGON);
+	{
+		if (coord.x.size() < 5){
+			glTexCoord3f(0.0, 0.0, 0.0);
+			glVertex3f(coord.x[0], coord.y[0], coord.z[0]);
 
-		glTexCoord3f(1.0, 0.0, 1.0);
-		glVertex3f(coord.x[1], coord.y[1], coord.z[1]);
+			glTexCoord3f(1.0, 0.0, 1.0);
+			glVertex3f(coord.x[1], coord.y[1], coord.z[1]);
 
-		glTexCoord3f(1.0, 1.0, 1.0);
-		glVertex3f(coord.x[2], coord.y[2], coord.z[2]);
+			glTexCoord3f(1.0, 1.0, 1.0);
+			glVertex3f(coord.x[2], coord.y[2], coord.z[2]);
 
-		glTexCoord3f(0.0, 1.0, 0.0);
-		glVertex3f(coord.x[3], coord.y[3], coord.z[3]);
+			glTexCoord3f(0.0, 1.0, 0.0);
+			glVertex3f(coord.x[3], coord.y[3], coord.z[3]);
+		} else
+			for (size_t i = 0; i < coord.x.size(); i++){
+			glTexCoord3f(0.0, 1.0, 0.0);
+			glVertex3f(coord.x[i], coord.y[i], coord.z[i]);
+		}
 	}
 	glEnd();
+	//glDisable(GL_TEXTURE_2D);
 }

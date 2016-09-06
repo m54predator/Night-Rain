@@ -12,6 +12,7 @@ public:
 	void Render() override;
 	void Change_Color(const RGBA &_color) override;
 	void Change_Coordinates(const Coordinates &_coord) override;
+	void Add_Polygon(const std::vector<GLfloat> &x, const std::vector<GLfloat> &y, const std::vector<GLfloat> &z);
 
 	std::vector<Polygon_3D> polygons;
 	std::string name;
