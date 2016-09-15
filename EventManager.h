@@ -55,7 +55,7 @@ public:
 				_data.mouse_motion_y = SDLEvent.motion.yrel;
 				_data.mouse_click_x = SDLEvent.button.x;
 				_data.mouse_click_y = SDLEvent.button.y;
-
+				_data.mouse_wheel = SDLEvent.wheel.y;
 				for (size_t i = 0; i < n; i++)
 					if ((UserEventList[i]->run) && (UserEventList[i]->key == SDLEvent.type))
 						UserEventList[i]->function->operator()(_data, _user_data);

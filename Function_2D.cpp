@@ -7,9 +7,9 @@ void Function_2D::Render()
 	size_t size = std::min(coord.x.size(), coord.y.size());
 
 	glColor3f(color.r, color.g, color.b);
-	glBegin(GL_LINES);
+	glBegin(GL_LINE_STRIP);
 	for (size_t i = 0; i < size; i++) {
-		glVertex2d(coord.x[i], coord.y[i]);
+		glVertex3d(coord.x[i], coord.y[i], -1);
 	}
 	glEnd();
 
