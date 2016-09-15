@@ -1,5 +1,9 @@
 #include "Coordinates.h"
 
+Coordinates::Coordinates(std::vector<GLfloat> &&x, std::vector<GLfloat> &&y, std::vector<GLfloat> &&z)
+	:x(x), y(y), z(z)
+{}
+
 void Coordinates::SetCoordinates(GLfloat _x, GLfloat _y, GLfloat _z)
 {
 	x.push_back(_x);

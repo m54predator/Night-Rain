@@ -18,6 +18,7 @@ public:
 	void Render() override;
 	void Change_Color(const RGBA &_color) override;
 	void Change_Coordinates(const Coordinates &_coord) override;
+	void Swap_Coordinates(std::vector<GLfloat> &x, std::vector<GLfloat> &y, std::vector<GLfloat> &z);
 	bool Change_Texture(const std::vector<unsigned char> &data, size_t _w, size_t _h);
 	bool Change_Texture(void *data, size_t _w, size_t _h);
 	bool Change_Texture(const Polygon_3D &_polygon);

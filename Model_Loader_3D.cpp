@@ -14,7 +14,7 @@ void Model_Loader_3D::Load_Model(std::string &path, Model_3D &new_model)
 	std::string line;
 	std::stringstream ss;
 	char sl;
-	char sp[256];
+	char sp[512];
 	int i, a, b, count;
 	GLfloat x, y, z;
 	std::vector<GLfloat> vx, vy, vz, vnx, vny, vnz, polyx, polyy, polyz;
@@ -73,10 +73,9 @@ void Model_Loader_3D::Load_Model(std::string &path, Model_3D &new_model)
 	{
 		in >> sl;
 		if (sl != 'f') break;
-		in.getline(sp, 256);
+		in.getline(sp, 512);
 		ss.clear();
 		ss << sp;
-		polyx.clear(); polyy.clear(); polyz.clear();
 		
 		while (!ss.eof())
 		{

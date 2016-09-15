@@ -28,13 +28,8 @@ void Model_3D::Render()
 		elm.Render();
 }
 
-void Model_3D::Add_Polygon(const std::vector<GLfloat> &x, const std::vector<GLfloat> &y, const std::vector<GLfloat> &z)
+void Model_3D::Add_Polygon(std::vector<GLfloat> &x, std::vector<GLfloat> &y, std::vector<GLfloat> &z)
 {
-	Polygon_3D poly;
-	Coordinates coord;
-	coord.x = x;
-	coord.y = y;
-	coord.z = z;
-	poly.Change_Coordinates(coord);
-	polygons.push_back(poly);
+	polygons.resize(polygons.size() + 1);
+	polygons.back().Swap_Coordinates(x, y, z);
 }

@@ -63,6 +63,14 @@ void Polygon_3D::Change_Coordinates(const Coordinates &_coord)
 	coord = _coord;
 }
 
+void Polygon_3D::Swap_Coordinates(std::vector<GLfloat> &x, std::vector<GLfloat> &y, std::vector<GLfloat> &z)
+{
+	coord.x.swap(x);
+	coord.y.swap(y);
+	coord.z.swap(z);
+}
+
+
 void Polygon_3D::Render()
 {
 	glColor3f(color.r, color.g, color.b);
