@@ -44,7 +44,7 @@ public:
 
 				frames++;
 				if (!(frames % 60)) {
-					std::cout << "frame " << frames << std::endl;
+					//std::cout << "frame " << frames << std::endl;
 					_data._tick++;
 				}
 
