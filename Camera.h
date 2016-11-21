@@ -23,6 +23,7 @@ public:
 
 	uint16_t angleXZ;
 	int16_t angleH;
+	bool _lockH;
 
 	Camera();
 
@@ -44,6 +45,8 @@ public:
 	float getAngleH() const;
 
 	void camDirectUpdate();
+	void lockH();
+	void unlockH();
 };
 
 #endif /* _CAMERA_H */

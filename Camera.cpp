@@ -13,6 +13,7 @@ Camera::Camera()
 	camX = 0;
 	camY = 0;
 	camZ = 0;
+	_lockH = true;
 
 	camDirectUpdate();
 }
@@ -65,17 +66,17 @@ void Camera::addAngleH(int16_t add)
 	auto max = std::numeric_limits<int16_t>::max();
 
 	add *= 2;
-
-	if ((static_cast<int>( angleH) + static_cast<int>( add)) < min) {
-		angleH = min;
+	if (_lockH) {
+		if ((static_cast<int>(angleH)+static_cast<int>(add)) < min) {
+			angleH = min;
+		}
+		else if ((static_cast<int>(angleH)+static_cast<int>(add)) > max) {
+			angleH = max;
+		}
+		else {
+			angleH += add;
+		}
 	}
-	else if ((static_cast<int>( angleH) + static_cast<int>( add)) > max) {
-		angleH = max;
-	}
-	else {
-		angleH += add;
-	}
-
 	camDirectUpdate();
 }
 
@@ -129,4 +130,12 @@ void Camera::camDirectUpdate()
 	upDirectX = a[1] * b[2] - a[2] * b[1];
 	upDirectY = a[2] * b[0] - a[0] * b[2];
 	upDirectZ = a[0] * b[1] - a[1] * b[0];
+}
+
+void Camera::lockH(){
+	_lockH = false;
+}
+
+void Camera::unlockH(){
+	_lockH = true;
 }
