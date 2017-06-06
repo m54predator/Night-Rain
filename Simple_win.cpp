@@ -76,6 +76,11 @@ void Simple_win::Create(int _wind_x, int _wind_y)
 
 void Simple_win::Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd)
 {
+	Simple_win::Create(_wind_x, _wind_y, _wind_wd, _wind_hd, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+}
+
+void Simple_win::Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd, Uint32 flags)
+{
 	Wind_x = _wind_x;
 	Wind_y = _wind_y;
 	Wind_Wd = _wind_wd;
@@ -89,7 +94,7 @@ void Simple_win::Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd)
 	                                  Wind_y,
 	                                  Wind_Wd,
 	                                  Wind_Hg,
-	                                  SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	                                  flags);
 	glcontext = SDL_GL_CreateContext(Wind_reference);
 	init();
 }

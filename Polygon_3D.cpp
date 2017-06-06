@@ -73,7 +73,7 @@ void Polygon_3D::Swap_Coordinates(std::vector<GLfloat> &x, std::vector<GLfloat> 
 
 void Polygon_3D::Render()
 {
-	glColor3f(color.r, color.g, color.b);
+	glColor4f(color.r, color.g, color.b, color.a);
 	if (_texture_id.operator bool())
 	{
 		glEnable(GL_TEXTURE_2D);

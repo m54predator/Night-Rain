@@ -16,6 +16,7 @@ public:
 	virtual void Create();
 	virtual void Create(int _wind_x, int _wind_y);
 	virtual void Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd);
+	virtual void Create(int _wind_x, int _wind_y, int _wind_wd, int _wind_hd, Uint32 flags);
 	void init();
 	void Display();
 

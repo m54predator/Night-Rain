@@ -21,6 +21,7 @@ public:
 	std::shared_ptr<Window> Create_window();
 	std::shared_ptr<Window> Create_window(int x, int y);
 	std::shared_ptr<Window> Create_window(int x, int y, int wd, int hg);
+	std::shared_ptr<Window> Create_window(int x, int y, int wd, int hg, Uint32 flags);
 	Data _data;
 
 private:

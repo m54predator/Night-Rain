@@ -69,6 +69,14 @@ std::shared_ptr<Window> CoreBase::Create_window(int x, int y, int wd, int hg)
 	return win;
 }
 
+std::shared_ptr<Window> CoreBase::Create_window(int x, int y, int wd, int hg, Uint32 flags)
+{
+	std::shared_ptr<Simple_win> win = addNewSimpleWin();
+	win->Create(x, y, wd, hg, flags);
+
+	return win;
+}
+
 void CoreBase::Close_All_Windows()
 {
 	size_t i;
